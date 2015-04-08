@@ -1,0 +1,47 @@
+<% @title = "Login | UsherBuddy, Last-Minute Event Tickets" %>
+<div id="content">
+
+	<div class="panel clearfix">
+
+        <h2 class="signup"><%= resource_name.capitalize %> Login<span class="login-span"> or <a class="login-a" href="new">signup</a></span></h2>
+        
+        <div style="margin-right: 20px;" class="c50l">
+          <%= form_for(resource_name.to_s, :url => session_path(resource_name)) do |f| %>
+        
+            <div class="row">
+      		<%= f.label :login, "Username or Email Address" %><br />
+		<%= f.text_field :login %>
+            </div>
+            <div class="row">
+      		<%= f.label :password, "Password" %><br />
+		<%= f.password_field :password %><br />
+            </div>
+	    <div class="row">
+              	<%= f.label :remember_me, "Remember Me" %>
+		<%= f.check_box :remember_me, {:class=>'remember_me'} %><br />
+	    </div>
+            <div class="row">
+      		<%= f.submit 'Sign in', :class => 'btn primary large signup' %>
+            </div>
+            <!--<div class="row">
+              <a target="_blank" href="forgotpassword">Forgot your password?</a>
+            </div>-->
+		<% end %>
+
+        </div><!--end .c50l-->
+        <% if resource_name.to_s == "user" %>
+        <div class="c50r mn15t">
+          <h3>Or Login With 3rd Party Logins</h3>
+	  <br>
+		<p>Connect your Facebook account to sign in to UsherBuddy.</p>
+		<%= link_to image_tag("/images/facebook-login.png", :border=>0), user_omniauth_authorize_path(:facebook) %>
+		<div class="mt20 mb20"></div>
+		<% if false%>
+		<p>Connect your Twitter account to sign in to UsherBuddy.</p>
+		<%= link_to image_tag("/images/twitter-login.png", :border=>0), user_omniauth_authorize_path(:twitter) %>
+		<% end %>
+	</div><!--end .c50r-->
+	<% end %>
+     </div><!--end .panel .clearfix-->
+    
+</div><!--end #content-->

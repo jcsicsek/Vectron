@@ -1,0 +1,84 @@
+function setCountdown(eventDate)
+{
+	$(function () {
+		$('#<%= "deal-" + @voucher.event_type_id.to_s %>').countdown('destroy');
+	    $('#<%= "deal-" + @voucher.event_type_id.to_s %>').countdown({until: new Date(eventDate), format: 'HMS'});
+	});
+}
+
+function initialize_thumbs()
+{
+	<% if user_signed_in? %>
+		<% thumb = Thumb.find_by_user_id_and_voucher_id(current_user.id, @voucher.id) %>
+		var thumbs_up = document.getElementById('thumbs-up-<%= @voucher.event_type_id %>')
+		var thumbs_down = document.getElementById('thumbs-down-<%= @voucher.event_type_id %>')
+		<% if thumb %>
+			<% if (thumb.up) %>
+				if (thumbs_up != null && thumbs_down != null)
+				{
+					thumbs_up.className = 'thumbs-up-selected';
+					thumbs_down.className = 'thumbs-down';
+				}
+			<% elsif (thumb.down) %>
+				if (thumbs_down != null && thumbs_up != null)
+				{
+					thumbs_down.className = 'thumbs-down-selected';
+					thumbs_up.className = 'thumbs-up';
+				}
+			<% end %>
+		<% else %>
+			if (thumbs_down != null && thumbs_up != null)
+			{
+				thumbs_up.className = 'thumbs-up';
+				thumbs_down.className = 'thumbs-down';
+			}
+		<% end %>
+	<% end %>
+}
+
+var eventTypeId = <%= @voucher.event_type_id %>;
+var eventId = <%= @voucher.id %>;
+var eventTime = '<%= @voucher.js_event_date %>';
+
+document.getElementById('title').innerHTML = '<%= escape_javascript(@voucher.format_title.html_safe) %>';
+document.getElementById('title').href = '/deal/' + '<%= @voucher.id %>';
+document.getElementById('discount-price').innerHTML = '<%= @voucher.format_discount_price %>';
+document.getElementById('normal-price').innerHTML = '<%= @voucher.format_normal_price %>';
+document.getElementById('percent-savings').innerHTML = '<%= @voucher.format_percent_savings %>';
+document.getElementById('dollar-savings').innerHTML = '<%= @voucher.format_dollar_savings %>';
+document.getElementById('featured-pic').src = '<%= @voucher.get_photo_url %>';
+document.getElementById('description').innerHTML = '<%= escape_javascript(@voucher.truncated_description.html_safe) %>';
+document.getElementById('details').innerHTML = '<%= escape_javascript(@voucher.truncated_details.html_safe) %>';
+document.getElementById('buy').href = '/checkout/' + '<%= @voucher.id %>';
+document.getElementById('buy').className = "<%= @voucher.sold_out? ? "no_display" : "buy-image" %>"
+document.getElementById('showtime-p').innerHTML = '<%= escape_javascript(@voucher.format_event_date) %>';
+
+document.getElementById('description-2').innerHTML = '<%= escape_javascript(@voucher.description.to_s.html_safe) %>';
+document.getElementById('details-2').innerHTML = '<%= escape_javascript(@voucher.details.to_s.html_safe) %>';
+document.getElementById('terms').innerHTML = '<%= escape_javascript(@voucher.terms.to_s.html_safe) %>';
+
+document.getElementById('facebook-share').onclick = function(){newPopup('<%= escape_javascript(@voucher.facebook_url) %>'); return false;};
+document.getElementById('twitter-share').onclick = function(){newPopup('<%= escape_javascript(@voucher.twitter_url) %>'); return false;};
+
+document.getElementById('thumbs-up-link').href = '<%= thumbs_up_path(:voucher_id => @voucher.id) %>';
+document.getElementById('thumbs-down-link').href = '<%= thumbs_down_path(:voucher_id => @voucher.id) %>';
+
+document.getElementById('view-' + eventId).src = '/images/viewing_deal.png';
+
+document.getElementById('sold-out').className = "<%= @voucher.sold_out? ? "featured_pic_sold_out" : "no_display" %>";
+
+document.title = "<%= @voucher.format_title + " | UsherBuddy, Last-Minute Event Tickets" %>";
+
+<% @other_events.each do |event| %>
+	document.getElementById('view-' + <%= event.id %>).src = '/images/view_deal.png';
+<% end %>
+document.getElementById('view-' + eventId).src = '/images/viewing_deal.png';
+
+<% if (user_signed_in?) %>
+	initialize_thumbs();
+<% end %>
+setCountdown(eventTime);
+
+
+$('#LoadingDiv').hide();
+

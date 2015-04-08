@@ -1,0 +1,182 @@
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+      #print {width:720px;}
+      h1 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 26pt; }
+      h2 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 18pt; }
+      h3 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 14pt; }
+      p { color: #333; font-family: sans-serif; font-weight: normal; font-size: 10pt; }
+      a { color: #333; font-family: sans-serif; font-weight: normal; font-size: 6pt; }
+     #logo {background:#111111;width:100%;height:auto;padding:5px;}
+     #logo img {height:auto; max-width:400px;}
+    table.tablesorter {
+	    font-family:arial;
+	    background-color: #4D4D4D;
+	    margin:10px 0pt 15px;
+	    font-size: 8pt;
+	    width: 100%;
+	    text-align: left;
+    }
+    table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	    background-color: #CCC;
+	    border: 1px solid #FFF;
+	    font-size: 8pt;
+	    padding: 4px;
+    }
+    table.tablesorter thead tr .header {
+	    background-image: url(/images/embed/bg.gif);
+	    background-repeat: no-repeat;
+	    background-position: center right;
+	    cursor: pointer;
+    }
+    table.tablesorter tbody td {
+	    color: #3D3D3D;
+	    padding: 4px;
+	    background-color: #FFF;
+	    vertical-align: top;
+    }
+    table.tablesorter tbody tr.odd td {
+	    background-color:#F0F0F6;
+    }
+    table.tablesorter thead tr .headerSortUp {
+	    background-image: url(/images/embed/asc.gif);
+    }
+    table.tablesorter thead tr .headerSortDown {
+	    background-image: url(/images/embed/desc.gif);
+    }
+    table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	    background-color: #8dbdd8;
+    }
+    table p {
+	margin-bottom: 0;
+    }
+    table th {
+	font-size: 1.2em;
+	font-weight: 700;
+	padding-left: 5px;
+    }
+    table th p {
+	font-weight: bold;
+	width: 100%;
+    }
+    .events_table th {
+	font-size: .8em;
+	font-weight: bold;
+    }
+    .events_table th .td_pad {
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 5px;
+    }
+    .events_table th .td_pad.first {
+	padding-left: 0;
+    }
+    .events_table th .td_pad.last {
+	padding-right: 15px;
+    }
+    .td_pad {
+	padding: 10px 0 10px 15px;
+    }
+    table .odd {
+	background: none repeat scroll 0 0 #CCC;
+    }
+    p.avatar {
+	margin-bottom: 6px;
+    }
+    .events_table .vouchers {
+	border-bottom: 1px solid #DAEACA;
+    }
+    .events_table .events_name {
+	margin: 0 0 6px;
+    }
+    .events_table tr th .desc {
+	/* background: url ; NEED TO ADD DOWN ARROW IMAGE */
+    }
+    .events_table tr th .asc {
+       /* background: url ; NEED TO ADD UP ARROW IMAGE */
+    }
+    .events_table td {
+	position: relative;
+    }
+    .events_table  p {
+	line-height: normal;
+    }
+    .events_table {
+	color: #A0A0A0;
+    }
+     .metrics {
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	background:#CCC;
+	color:#000;
+	margin: 10px;
+	padding:10px;
+	display:block;
+	position:relative;
+	float:left;
+	height:80px;
+	width:120px;
+	margin-bottom:20px;
+    }
+     .metrics-title {
+	font-size: 14px;
+	font-weight:bolder;
+	color:#222;
+	text-align:center;
+     }
+     .metrics-kpi {
+	font-size: 12px;
+	text-align:center;
+	color:#222;
+     }
+    </style>
+    <%= javascript_include_tag 'jquery-1.6.1.min' %>
+    <%= javascript_include_tag 'jquery.tablesorter.min' %>
+    <%= javascript_include_tag 'custom' %>
+	<!--[if IE]>
+         <%= javascript_include_tag 'modernizr-2.0.6.min' %>
+	<![endif]--> 
+	<!--[if lt IE 7]>
+	  <%= javascript_include_tag 'unitpngfix' %>
+	<![endif]-->
+</head>
+    <body id="print">
+	<h1 id="logo"><img src="http://ec2-50-17-104-156.compute-1.amazonaws.com/images/embed/logo.png"></h1>
+        <h2><strong>Event Name</strong>:  <%= @voucher.name %></h2>
+	<h3><strong>Event Date</strong>: <%= @voucher.format_event_date %></h3>
+	<div class="metrics"><p class="metrics-title">Tickets Sold: <p class="metrics-kpi"><%= @voucher.purchase_count %></p></p></div>
+	<div class="metrics"><p class="metrics-title">Remaining Tickets: <p class="metrics-kpi"><%= @voucher.number_remaining %></p></p></div>
+	<div class="metrics"><p class="metrics-title">Ticket Revenue: <p class="metrics-kpi"><%= @voucher.print_revenue %></p></p></div>
+	<div class="metrics"><p class="metrics-title">Commission Paid: <p class="metrics-kpi"><%= @voucher.print_commission %> </p></p></div>
+	
+	<table class="tablesorter sort"> 
+	    <thead> 
+	            <tr> 
+			<th></th>
+			<th>Ticket ID</th>
+			<th>Qty</th>
+			<th>Last Name</th> 
+			<th>First Name</th> 
+			<th>Payment Info</th> 
+			<th>Date/Time Purchased</th> 
+	            </tr> 
+	    </thead> 
+	    <tbody> 
+	        <% @voucher.voucher_offers.each_with_index do |voucher_offer, index| %>
+	            <tr>
+			<td><%= index + 1 %>
+			<td><%= voucher_offer.ticket_id %></td>
+			<td><%= voucher_offer.quantity %>
+	                <td><%= voucher_offer.user.last_name %></td> 
+	                <td><%= voucher_offer.user.first_name %></td> 
+	                <td><%= voucher_offer.print_payment_info %></td> 
+	                <td><%= voucher_offer.print_date_added %></td> 
+	            </tr>
+	        <% end %>
+	    </tbody> 
+	</table>
+    
+    </body>
+</html>

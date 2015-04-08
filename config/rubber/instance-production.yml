@@ -1,0 +1,57 @@
+--- 
+- !ruby/object:Rubber::Configuration::InstanceItem 
+  domain: foo.com
+  external_host: ec2-50-17-104-156.compute-1.amazonaws.com
+  external_ip: 50.17.104.156
+  image_id: ami-7000f019
+  image_type: m1.small
+  instance_id: i-9ba5dafa
+  internal_host: ip-10-118-115-141.ec2.internal
+  internal_ip: 10.118.115.141
+  name: production
+  platform: linux
+  roles: 
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: web
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: haproxy
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: app
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: passenger
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: apache
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: db
+    options: 
+      primary: true
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: mysql_master
+    options: {}
+
+  root_device_type: instance-store
+  security_groups: 
+  - vectron_production_default
+  - vectron_production_web
+  - vectron_production_production
+  - vectron_production_haproxy
+  - vectron_production_app
+  - vectron_production_passenger
+  - vectron_production_apache
+  - vectron_production_db
+  - vectron_production_mysql_master
+  zone: us-east-1d
+- volumes: {}
+
+  static_ips: {}
+

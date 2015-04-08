@@ -1,0 +1,255 @@
+<div id="account">
+	<div id="tabs">
+		<ul>
+			<li><a href="#venuelist">Venue List</a></li>
+			<li><a href="#eventlist">Event List</a></li>
+			<li><a href="#deallist">Deal List</a></li>
+			<li><a href="#purchaselist">Purchases List</a></li>
+			<li><a href="#userstats">User Stats</a></li>
+			<!--<li><a href="#">My Analytics</a></li>-->
+		</ul>
+			<div id="venuelist">
+				<table id="venue_list" class="tablesorter sort"> 
+					<thead> 
+						<tr> 
+							<th style="width:3%;">ID#</th>
+							<th style="width:13%;">Venue Name</th> 
+							<th style="width:35%;">Short About</th> 
+							<th style="width:9%;">Address</th>
+							<th style="width:8%;">Contact</th>
+							<th style="width:8%;">Last Login</th>
+							<th style="width:8%;">Link to View Deals</th>
+							<th style="width:8%;">Activate or Deactivate</th>
+							<th style="width:8%;">Sign In As Business</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						 <% @businesses.each do |business| %>
+						      <tr> 
+							      <td><%= business.id %></td>
+							      <td><%= business.name %></td>
+							      <td><%= business.short_description %></td> 
+							      <td><%= business.street_address.to_s + ", " + business.city_state_zip + ", " + business.neighborhood.to_s %></td>
+							      <td><%= business.contact_info %></td>
+							      <td><%= business.format_last_login %></td>
+							      <td>Link to View Deals</td>
+							      <td><%= !business.active ? link_to("Activate", admin_activate_business_path(:id => business.id)) : "Active" %></td>
+								  <td><%= link_to "Sign In", admin_business_signin_path(:id => business.id) %></td>
+						      </tr>
+						 <% end %>
+					</tbody> 
+				</table>
+			</div>
+			<div id="eventlist">
+			  <div id="subtabs">
+				<ul>
+					<li><a href="#upcoming">Upcoming Events</a></li>
+					<li><a href="#past">Past Events</a></li>
+				</ul>
+				<div id="upcoming"> 
+				  <table id="upcoming_event_list" class="tablesorter sort"> 
+					<thead> 
+						<tr> 
+							<th style="width:8%;">Venue Name</th>
+							<th style="width:10%;">Show Name</th>
+							<th style="width:44%;">Short About</th> 
+							<th style="width:10%;">Date</th>
+							<th style="width:8%;">Price</th>
+							<th style="width:8%;">Launched?</th>
+							<th style="width:4%;">Deal ID#</th>
+							<th style="width:8%;">Qty Purchased</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						 <% @upcoming_event_templates.each do |template| %>
+						      <tr> 
+							      <td><%= template.business.name %></td>
+							      <td><%= template.name %></td>
+							      <td><%= template.description %></td> 
+							      <td><%= template.format_date_range %></td>
+							      <td><%= template.format_normal_price %></td>
+							      <td>N/A</td>
+							      <td>EventTemplate <%= template.id %></td>
+							      <td>N/A</td> 
+						      </tr>
+						<% end %>
+						 <% @upcoming_all_events.each do |event| %>
+						      <tr> 
+							      <td><%= event.business.name %></td>
+							      <td><%= event.name %></td>
+							      <td><%= event.description %></td> 
+							      <td><%= event.format_table_date %> <%= event.format_time_only %></td>
+							      <td><%= event.format_normal_price %></td>
+							      <td><%= event.launched %></td>
+							      <td>Voucher <%= event.id %></td>
+							      <td><%= event.purchase_count.to_i %></td> 
+						      </tr>
+						<% end %>
+					</tbody> 
+				  </table> 
+				</div>
+				<div id="past"> 
+				  <table id="past_event_list" class="tablesorter sort"> 
+					<thead> 
+						<tr> 
+							<th style="width:8%;">Venue Name</th>
+							<th style="width:10%;">Show Name</th>
+							<th style="width:44%;">Short About</th> 
+							<th style="width:10%;">Date</th>
+							<th style="width:8%;">Price</th>
+							<th style="width:8%;">Launched?</th>
+							<th style="width:4%;">Deal ID#</th>
+							<th style="width:8%;">Qty Purchased</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						 <% @past_event_templates.each do |template| %>
+						      <tr> 
+							      <td><%= template.business.name %></td>
+							      <td><%= template.name %></td>
+							      <td><%= template.description %></td> 
+							      <td><%= template.format_date_range %></td>
+							      <td><%= template.format_normal_price %></td>
+							      <td>N/A</td>
+							      <td>EventTemplate <%= template.id %></td>
+							      <td>N/A</td> 
+						      </tr>
+						<% end %>
+						 <% @past_all_events.each do |event| %>
+						      <tr> 
+							      <td><%= event.business.name %></td>
+							      <td><%= event.name %></td>
+							      <td><%= event.description %></td> 
+							      <td><%= event.format_table_date %> <%= event.format_time_only %></td>
+							      <td><%= event.format_normal_price %></td>
+							      <td><%= event.launched %></td>
+							      <td>Voucher <%= event.id %></td>
+							      <td><%= event.purchase_count.to_i %></td> 
+						      </tr>
+						<% end %>
+					</tbody> 
+				  </table> 
+				</div>
+			  </div>
+			</div>
+			<div id="deallist">
+			  <div id="subtabs">
+				<ul>
+					<li><a href="#active">Active Offers</a></li>
+					<li><a href="#inactive">Inactive Offers</a></li>
+				</ul>
+				<div id="active"> 
+				  <table id="active_offers_list" class="tablesorter sort"> 
+					<thead> 
+						<tr> 
+							<th style="width:12%;">Venue Name</th>
+							<th style="width:16%;">Show Name</th>
+							<th style="width:16%;">Date</th>
+							<th style="width:12%;">Price</th>
+							<th style="width:8%;">Deal ID#</th>
+							<th style="width:12%;">Qty Purchased</th>
+							<th style="width:12%;">Revenue $</th>
+							<th style="width:12%;">Commission $</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						 <% @upcoming_launched_events.each do |event| %>
+						      <tr> 
+							      <td><%= event.business.name %></td>
+							      <td><%= event.name %></td>
+							      <td><%= event.format_table_date %> <%= event.format_time_only %></td>
+							      <td><%= event.format_discount_price %></td>
+							      <td><%= event.id %></td>
+							      <td><%= event.purchase_count.to_s %></td>
+							      <td><%= event.print_ub_revenue %></td>
+							      <td><%= event.print_commission %></td> 
+						      </tr>
+						<% end %>
+					</tbody> 
+				  </table> 
+				</div>
+				<div id="inactive"> 
+				  <table id="inactive_offers_list" class="tablesorter sort"> 
+					<thead> 
+						<tr> 
+							<th style="width:12%;">Venue Name</th>
+							<th style="width:16%;">Show Name</th>
+							<th style="width:16%;">Date</th>
+							<th style="width:12%;">Price</th>
+							<th style="width:8%;">Deal ID#</th>
+							<th style="width:12%;">Qty Purchased</th>
+							<th style="width:12%;">Revenue $</th>
+							<th style="width:12%;">Commission $</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						 <% @past_launched_events.each do |event| %>
+						      <tr> 
+							      <td><%= event.business.name %></td>
+							      <td><%= event.name %></td>
+							      <td><%= event.format_table_date %> <%= event.format_time_only %></td>
+							      <td><%= event.format_discount_price %></td>
+							      <td><%= event.id %></td>
+							      <td><%= event.purchase_count.to_s %></td>
+							      <td><%= event.print_ub_revenue %></td>
+							      <td><%= event.print_commission %></td> 
+						      </tr>
+						<% end %>
+					</tbody> 
+				  </table> 
+				</div>
+			  </div>
+			</div>
+			<div id="purchaselist">
+			  <table id="purchase_list" class="tablesorter sort"> 
+				<thead> 
+					<tr> 
+						<th style="width:12%;">Ticket ID#</th>
+						<th style="width:16%;">Date/Time Purchased</th>
+						<th style="width:16%;">Purchaser Name</th>
+						<th style="width:12%;">Purchase Method</th>
+						<th style="width:8%;">Deal ID#</th>
+						<th style="width:12%;">Qty Purchased</th>
+						<th style="width:12%;">Revenue $</th>
+						<th style="width:12%;">Commission $</th>
+					</tr> 
+				</thead> 
+				<tbody> 
+					 <% @voucher_offers.each do |voucher_offer| %>
+						<% if !voucher_offer.voucher %>
+							<% next %>
+						<% end %>
+					      <tr> 
+						      <td><%= voucher_offer.ticket_id %></td>
+						      <td><%= voucher_offer.format_purchase_date %></td>
+						      <td><%= voucher_offer.user ? voucher_offer.user.format_name : "User does not exist" %></td>
+						      <td><%= voucher_offer.user ? voucher_offer.get_cc_number : "User does not exist" %></td>
+						      <td><%= voucher_offer.voucher.id %></td>
+						      <td><%= voucher_offer.quantity.to_i %></td>
+						      <td><%= voucher_offer.print_ub_revenue %></td>
+						      <td><%= voucher_offer.print_commission %></td> 
+					      </tr>
+					<% end %>
+				</tbody> 
+			  </table> 
+			</div>
+			<div id="userstats">
+			  <p>Number of users registered: <%= @user_count %></p>
+			  <p>Weekly active users: <%= @weekly_active_users %></p>
+			  <br><br>
+			  <p>Number of subscribers: <%= @subscriber_count %></p>
+			  <p>Weekly active users: </p>
+			  <br><br>
+			  <p>Number of businesses registered: <%= @business_count %></p>
+			  <p>Weekly active businesses: <%= @weekly_active_businesses %></p>
+			  <br><br>
+			  <p>Number of people who have purchased: <%= @users_with_purchase %> </p>
+			  <p>Purchases per person who purchased: <%= @purchases_per_user %></p>
+			  <p>Average tickets per order: <%= @tickets_per_order %> </p>
+			  <p>Average revenue per order: $<%= @revenue_per_order %> </p>
+			</div>
+			<!--<div id="myanalytics">
+				<p>Coming soon...</p>
+			</div>-->
+	</div>
+</div>

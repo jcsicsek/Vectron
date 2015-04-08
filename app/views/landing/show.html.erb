@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>UsherBuddy | Last-Minute Ticket Deals</title>
+	<meta property="og:title" content="UsherBuddy | Last-Minute Ticket Deals" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.usherbuddy.com" />
+	<meta property="og:image" content="http://www.usherbuddy.com/images/buddy.png" />
+	<meta property="og:site_name" content="UsherBuddy" />
+	<meta property="fb:app_id" content="106592586107111" />
+	<%= include_stylesheets :global, :media => 'all' %>
+	<%= include_javascripts :global %>
+	<!--[if IE]>
+         <%= javascript_include_tag 'modernizr-2.0.6' %>
+	<![endif]--> 
+	<!--[if lt IE 8]>
+	  <%= stylesheet_link_tag 'style' %>
+	  <%= stylesheet_link_tag 'typography' %>
+	  <%= stylesheet_link_tag 'jquery-ui-1.8.14.custom' %>
+	  <%= stylesheet_link_tag 'jquery.countdown' %>
+	  <%= stylesheet_link_tag 'jquery.multiselect' %>
+	  <%= stylesheet_link_tag 'jquery.multiselect.filter' %>
+	  <%= stylesheet_link_tag 'jquery-ui-timepicker' %>
+	  <%= stylesheet_link_tag 'jtip' %>
+	  <%= stylesheet_link_tag 'ie7' %>
+	<![endif]-->
+	<!--[if lt IE 7]>
+	  <%= javascript_include_tag 'unitpngfix' %>
+	<![endif]-->
+	
+	<script type="text/javascript">
+	        var _gaq = _gaq || [];
+	        _gaq.push(['_setAccount', 'UA-23834846-3']);
+	        _gaq.push(['_trackPageview']);
+
+	        (function() {
+	          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	        })();
+	</script>
+</head>
+
+<body id="single" style="overflow-x:hidden;">
+<div class="container">
+    <div id="supersized">       
+	<img src="../images/bg_concert.jpg" />
+    </div><!--end #supersized-->
+
+    <div id="nav">
+	<div id="wrapper">
+	    <h1 id="logo">
+		<%= link_to image_tag("/images/embed/logo.png", :border=>0), root_path %>
+	    </h1>
+	    <ul>
+		<li><%= link_to "Login", users_login_path %></li>
+		<li><%= link_to "Sign up", users_new_path %></li>
+	    </ul>
+	</div>
+    </div>
+    <div id="wrapper">
+	<img alt="Last Minute Ticket Events for Your Favorite Events" class="description" src="images/desc.png" />
+	<% form_for(@subscriber, :validate => true, :html => {:id => "register"}, :url => subscriber_create_path) do |f| %>
+	    <div id="landing-form-1" class="form-landing form-step1-landing">
+		<div class="form-landing-container">
+		    <div class="landing-step">
+			<span class="landing-step-1"></span>			
+		    </div><!--end .landing-step-->
+		    <fieldset>
+			<h2>Confirm your city :</h2>
+			<%= f.collection_select(:city_id, City.all, :id, :name, {}, {:id => 'select_location'}) %>
+		    </fieldset>
+		    <div class="button-landing" style="margin-top: 10px;">
+			<a class="button-landing-1" href="#" id="step_one" onclick="; return false;">Continue</a>
+		    </div><!--end .button-landing-->
+		    <span style="float:right; padding-right:50px;"><a href="/users/new">Login</a> | <a href="privacy">Privacy</a></span>
+		</div><!--end .form-landing-container-->
+	    </div>
+	    
+	    <div id="landing-form-2" class="form-landing form-step2-landing formhide">
+		    <div class="form-landing-container">
+			    <div class="landing-step">
+				<span class="landing-step-2"></span>
+			    </div><!--end .landing-step-->
+			    <fieldset style="padding-bottom: 0;">
+				    <h2>Enter your email :</h2>
+				    <div class="email_field">
+					    <label class="hide" for="subscription_email_address">&nbsp;</label>
+					    <%= f.text_field :email, {:id => 'subscription_email_address', :size => '30', :title => 'Please enter a valid email address.', :style => 'height: 10px;'} %>
+				    </div><!--end .email_field-->
+				    <p>Don't worry, your email is safe with us.</p>
+			    </fieldset>
+		    <div class="button-landing">
+			    <input class="button-landing-2" id="subscription_submit" name="commit" value="" type="submit">
+		    </div><!--end .button-landing-->
+		<span style="float:right; padding-right:50px;"><a href="/users/new">Login</a> | <a href="privacy">Privacy</a></span>
+		    </div><!--end .form-landing-container-->
+	    </div>
+	<% end %> <!--end form id register-->
+    </div><!--end #wrapper-->
+    <div class="push"></div>
+</div>
+<div class="footer-landing">
+    <div id="facebook-wrap-landing">
+	<div id="fb-root"></div>
+	<script src="http://connect.facebook.net/en_US/all.js#appId=106592586107111&amp;xfbml=1"></script><fb:like href="http://www.usherbuddy.com" send="true" width="450" show_faces="true" colorscheme="dark" font=""></fb:like>
+    </div>
+    <div id="footer-wrap-landing">
+	<div class="footer-c50l">
+	    <ul>
+		<li><a href="about">About</a> |</li> 
+		<li><a href="jobs">Careers</a> |</li> 
+		<li><a href="business">For Businesses</a> |</li>
+		<li><a href="terms">Terms of Service</a></li>
+	    </ul>
+	</div><!--end .c33l-->
+	<div class="footer-c35lc">
+		<p>Copyright 2011 UsherBuddy Inc. All Rights Reserved.</p>
+	</div><!--end .c33lc-->
+	<div class="footer-c15r">
+		<ul>
+		    <!--<li><a href="#"><img src="images/icons/android.png" height="26px" width="26px" /></a></li>
+		    <li><a href="#"><img src="images/icons/apple.png" height="26px" width="26px" /></a> | </li>-->
+		    <li><a class="facebook" href="https://www.facebook.com/UsherBuddy" target="_blank"></a></li>
+		    <li><a class="twitter" href="http://www.twitter.com/UsherBuddy" target="_blank"></a></li>
+		</ul>
+	</div><!--end .c33r-->
+    </div><!--end #footer-wrap-landing-->
+</div>
+</body>
+</html>

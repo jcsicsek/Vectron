@@ -1,0 +1,90 @@
+<div id="content">
+	<div class="panel clearfix">
+	<div style="float:right;"><a href="javascript:history.go(-1)" class="btn medium"><< Back</a></div>
+		<h1>Add or Modify A Recurring Event</h1>
+		<p>A recurring event is a lot different than a single event. If you'd like to add a singe event, <a href="/event/new" class="edit">click here</a>. When you launch last-minute tickets for a recurring event, don't worry, you can change any field below before launching the offer. This is simply to make it more streamlined for you.</p>
+		<div>
+			<%= form_for(@event_template, :validate => true, :url => template_update_path, :html => { :multipart => true }) do |f| %>
+			<%= f.hidden_field :id %>
+			<% if @locations.count <= 1 %>
+				<%= f.hidden_field :venue_id %>
+			<% else %>
+			<div class="row">
+				<%= f.label :venue, "Venue Location:" %>
+				<%= f.collection_select(:venue_id, @locations, :id, :name, {}, {:id=>'venue', :size=>'30'}) %>
+			</div>
+			<% end %>
+			<div class="row">
+				<%= f.label :event_type, "Event Type:" %>
+				<%= f.collection_select(:event_type_id, EventType.all, :id, :name, {}, {:id=>'event_type', :size=>'30'}) %>
+			</div>
+			<div class="row">
+				<%= f.label :name, "Event/Show Name:" %>
+				<%= f.text_field :name, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/eventname.htm?width=225" class="jTip" id="tip-eventname" name="What is the event name">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :description, "Description:" %>
+				<%= f.text_area :description, {:class=>'ui-state-default', :size=>'70x6'} %>
+				<span class="formInfo"><a href="/tips/description.htm?width=225" class="jTip" id="tip-description" name="What is the description for the event?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :details, "Additional Details (cast and crew, artists, etc.):" %>
+				<%= f.text_area :details, {:class=>'ui-state-default', :size=>'70x6'} %>
+				<span class="formInfo"><a href="/tips/details.htm?width=225" class="jTip" id="tip-details" name="What additional details would you like to share?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :terms, "Terms and Conditions:" %>
+				<%= f.text_area :terms, {:class=>'ui-state-default', :size=>'70x6'} %>
+				<span class="formInfo"><a href="/tips/terms.htm?width=225" class="jTip" id="tip-terms" name="What special terms do you have?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :photo, "Event Photo (from file):" %>  
+				<%= f.file_field :photo, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/photofile.htm?width=225" class="jTip" id="tip-photofile" name="Would you like to upload an image?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :photo_url, "Event Photo (from URL):" %>  
+				<%= f.text_field :photo_url, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/photourl.htm?width=225" class="jTip" id="tip-photourl" name="Do you have an image hosted?">?</a></span>
+			</div>
+			<div class="row">
+				<%= label_tag 'current_photo', "Current Event Photo:" %>
+				<% if (@event_template.get_photo_url.empty?) %>
+				  <span>None selected, choose one above.</span>
+				<% else %>
+				  <%= image_tag(@event_template.get_photo_url, {:width => "100", :height=> "auto", :title => @event_template.name, :alt => @event_template.name}) %>
+				<% end %>
+			</div>
+			<div class="row">
+				<%= f.label :from_date, "Run Dates:" %>
+				<%= f.text_field :from_date, {:class=>'ui-state-default', :id => 'from_date'} %>
+				<span class="formInfo"><a href="/tips/fromdate.htm?width=225" class="jTip" id="tip-fromdate" name="What is the from date?">?</a></span>
+				<span> to </span>
+				<%= f.text_field :to_date, {:class=>'ui-state-default', :id => 'to_date'} %>
+				<span class="formInfo"><a href="/tips/todate.htm?width=225" class="jTip" id="tip-todate" name="What is the to date?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :event_time, "Event Time:" %>
+				<%= f.text_field :event_time, {:class=>'ui-state-default', :id => 'event_time'} %>
+				<span class="formInfo"><a href="/tips/eventtimefrom.htm?width=225" class="jTip" id="tip-eventtimefrom" name="What time is the event?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :ticket_cutoff, "Ticket Cut-Off (minutes before showtime):" %>
+				<%= f.text_field :ticket_cutoff, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/cuttime.htm?width=225" class="jTip" id="tip-cuttime" name="What is the cut-off time for ticket sales?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :full_value_cents, "Normal Price:" %>
+				<%= f.text_field :full_value_cents, {:class=>'ui-state-default currency'} %>
+				<span class="formInfo"><a href="/tips/normalprice.htm?width=225" class="jTip" id="tip-normalprice" name="What is the normal price?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.submit 'Save', :class => 'btn primary large save' %>
+			</div>
+		<% end %>	
+		</div><!--end form-->
+    
+	</div><!--end #panel clearfix-->
+</div><!--end #content-->
+

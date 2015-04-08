@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  referrer_id: 1
+  referee_id: 1
+  voucher_id: 1
+
+two:
+  referrer_id: 1
+  referee_id: 1
+  voucher_id: 1

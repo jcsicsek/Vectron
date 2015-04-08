@@ -1,0 +1,14 @@
+.description{
+	margin:40px 200px 15px;
+}
+#nav {
+	background-color:#222;
+}
+.featured_right{
+	clear:left;
+}
+.featured_left{
+}
+.buy_ribbon p{
+	padding-top:10px;
+}

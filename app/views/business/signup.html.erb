@@ -1,0 +1,77 @@
+<div id="content">
+	<div class="panel clearfix">
+		<h1>Business Sign Up</h1>
+		<h2 class="signup">Sign up <span class="login-span"> or <%= link_to "login", business_login_path, {:class=>'login-a'} %></span></h2>
+		<div>
+		<%= form_for(@business, :validate => true, :url => business_registration_path) do |f| %>
+			<div class="row">
+				<%= f.label :name, "Business Name:" %>
+				<%= f.text_field :name, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :first_name, "First Name:" %>
+				<%= f.text_field :first_name, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :last_name, "Last Name:" %>
+				<%= f.text_field :last_name, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+			<% if cookies[:subscriber_id]  %>
+				<%= f.label :email, "Email Address:" %>
+				<%= f.text_field :email, {:class=>'ui-state-default', :value=>Subscriber.find(cookies[:subscriber_id]).email} %>
+			<% else  %>
+				<%= f.label :email, "Email Address:" %>
+				<%= f.text_field :email, {:class=>'ui-state-default'} %>
+			<% end %>
+			</div>
+			<div class="row">
+				<%= f.label :street_address, "Address 1:" %>
+				<%= f.text_field :street_address, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :street_address_2, "Address 2:" %>
+				<%= f.text_field :street_address_2, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :city_address, "City:" %>
+				<%= f.text_field :city_address, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :neighborhood, "Neighborhood:" %>
+				<%= f.text_field :neighborhood, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+			    <%= f.label :state, "State:" %>
+			    <%= f.state_select(:state) %>
+			</div>
+			<div class="row">
+				<%= f.label :zip_code, "Zip Code:" %>
+				<%= f.text_field :zip_code, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :phone_number, "Phone Number:" %>
+				<%= f.text_field :phone_number, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :website_url, "Website:" %>
+				<%= f.text_field :website_url, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :password, "Password:" %>
+				<%= f.password_field :password, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :password_confirmation, "Password Confirmation:" %>
+				<%= f.password_field :password_confirmation, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<p class="terms">By registering you agree to UsherBuddy's <a href="/terms" class="edit" target="_blank">Terms and Conditions</a> and <a href="/privacy" class="edit" target="_blank">Privacy Policy</a>.</p>
+			</div>
+			<div class="row">
+				<%= f.submit 'Sign Up', :class => 'btn primary large signup' %>
+			</div>
+		<% end %>
+		</div><!--end form for business-->
+	</div><!--end .panel .clearfix-->
+</div><!--end #content-->

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  max_offers: 1
+  redeemed_offers: 1
+  credit: 1
+  active: false
+
+two:
+  name: MyString
+  max_offers: 1
+  redeemed_offers: 1
+  credit: 1
+  active: false

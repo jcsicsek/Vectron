@@ -1,0 +1,139 @@
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+      #print {width:720px;}
+      h1 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 26pt; }
+      h2 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 18pt; }
+      h3 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 14pt; }
+      p { color: #333; font-family: sans-serif; font-weight: normal; font-size: 10pt; }
+      a { color: #333; font-family: sans-serif; font-weight: normal; font-size: 6pt; }
+     .s1 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 10pt; }
+     .s2 { color: #333; font-family: sans-serif; font-weight: normal; font-size: 9pt; }
+     .s3 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 9pt; }
+     .s4 { color: #333; font-family: sans-serif; font-weight: normal; font-size: 6pt; }
+     .h4 { color: #333; font-family: monospace; font-weight: bold; font-size: 11pt; }
+     .s5 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 8pt; }
+     .s6 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 6pt; }
+     .s7 { color: #333; font-family: sans-serif; font-weight: normal; font-size: 6pt; }
+     .s8 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 7pt; }
+     .s9 { color: #333; font-family: sans-serif; font-weight: normal; font-size: 7pt; }
+     .s10 { color: #333; font-family: sans-serif; font-weight: bold; font-size: 5pt; }
+     #voucher-id {float:right; position:relative; margin:5px 0;width:310px;}
+     #logo {background:#111111;width:100%;height:auto;padding:5px;}
+     #logo img {height:auto; max-width:400px;}
+     #redeem {float:right;}
+     #barcode {float:right;margin-top: 160px; margin-right: 15px;position:relative;}
+     #tagline {width:390px;}
+     .fl {float:left;}
+     .clear {clear:both;}
+     .m10 {margin:10px 0;}
+     .m15 {margin:15px 0;}
+     .mr15 {margin-right:15px;}
+     .pr15 {padding-right:15px;}
+     .w170 {width:170px;}
+     .w220 {width:220px;}
+     .w240 {width:240px;}
+     .w255 {width:255px;}
+     .w340 {width:340px;}
+     .w380 {width:380px;}
+    </style>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+      function codeAddress(address) {
+	geocoder.geocode( { 'address': address}, function(results, status) {
+	  if (status == google.maps.GeocoderStatus.OK) {
+	    map.setCenter(results[0].geometry.location);
+	    var marker = new google.maps.Marker({
+		map: map, 
+		position: results[0].geometry.location
+	    });
+	  } else {
+	    alert("Geocode was not successful for the following reason: " + status);
+	  }
+	});
+      }
+    
+    var geocoder;
+      var map;
+      function initialize() {
+	geocoder = new google.maps.Geocoder();
+	var latlng = new google.maps.LatLng(-34.397, 150.644);
+	var myOptions = {
+	  zoom: 13,
+	  center: latlng,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	    codeAddress("<%= @business_name + " NYC" %>");
+      }
+    </script>
+</head>
+    <body id="print" onload="initialize()">
+        <h1 id="logo"><img src="http://ec2-50-17-104-156.compute-1.amazonaws.com/images/embed/logo.png"></h1>
+        <h1 id="voucher-id">#<%= @voucher_code %></h1>
+        
+        <h2 id="tagline"><%= @event_tagline %></h2>
+        
+        <div class="fl w220">
+            <p class="s1">Guest:</p>
+            <p>Name: <%= @full_name %></p>
+	    <p>Qty: <%= @quantity %>
+            <p>Payment: <%= @payment_details %></p>
+        </div>
+        
+        <div class="fl w220">
+            <p class="s1">Expires On:</p>
+            <p><%= @date %></p>
+            <p><%= @time %></p>
+        </div>
+        
+        <div class="fl w220">
+            <p class="s1">Redeem at:</p>
+            <p class="s2"><%= @street_address %></p>
+            <p class="s2"><%= @city_state_zip %></p>
+        </div>
+        
+        <div class="clear"></div>
+        
+        <div class="fl w340 mr15 pr15">
+            <h3>How to use this:</h3>
+            <p>1. Print event ticket (or use your mobile phone).
+            <br/>2. Present ticket to box office.
+            <br/>3. Enjoy!</p>
+            <p>*Remember: Be courteous to the talent and the audience -- show up at least 10 minutes early so that you can get seated!</p>
+        </div>
+        
+        <div class="fl w340">
+            <h3>Map:</h3>
+            <span><div id="map_canvas" style="height:200px;width:240px"></div></span>
+        </div>
+        
+        <div id="barcode">
+            <span class="h4">#<%= @voucher_code %></span>
+        </div>
+        
+        
+        <div class="m10">
+            <p class="s1">UsherBuddy Support:</p>
+            <p>(646) 481-6829 Monday-Friday 9am-9pm EST. Email UsherBuddy:<a href="mailto:info@usherbuddy.com" class="s5">info@usherbuddy.com</a></p>
+        </div>
+        
+        <div class="m10">
+            <p class="s1">Fine Print:</p>
+            <p><% @terms %></p>
+        </div>
+        
+        <div class="m10">
+            <p class="s1">Universal Fine Print:</p>
+            <p>Not valid for cash back (unless required by law). Must use in one visit. Doesn't cover tax or gratuity. Can't be combined with other offers.</p>
+        </div>
+        
+        <div class="m10">
+            <p class="s5">Legal Stuff We Have To Say:</p>
+        
+            <p><a href="http://www.usherbuddy.com/terms">General terms applicable to all Tickets (unless otherwise set forth below, in UsherBuddy's Terms of Sale, or in the Fine Print): Unless prohibited by applicable law the following restrictions also apply. See below for further details. Discount Ticket Expires On: <%= @date %>. However, even if the promotional offer stated on your UsherBuddy ticket has expired, applicable law may require the merchant to allow you to redeem your ticket beyond its expiration date for goods/services equal to the amount you paid for it. If you have gone to the merchant and the merchant has refused to redeem the cash value of your expired ticket, and if applicable law entitles you to such redemption, UsherBuddy will refund the purchase price of the ticket per its Terms of Sale. Redemption Value: If not redeemed by the discount ticket expiration date, this UsherBuddy will continue to have a redemption value equal to the amount you paid (<%= @price %>) at the named merchant for the period specified by applicable law. The redemption value will be reduced by the amount of purchases made. This UsherBuddy expiration date above, the merchant will, in its discretion: (1) allow you to redeem this ticket for the product or service specified on the ticket or (2) allow you to redeem the ticket to purchase other goods or services from the merchant for up to the amount you paid (<%= @price %>) for the ticket. This ticket can only be used for making purchases of goods/services at the named merchant. Merchant is solely responsible for ticket redemption. Tickets cannot be redeemed for cash or applied as payment to any account unless required by applicable law. Neither UsherBuddy, Inc. nor the named merchant shall be responsible for UsherBuddy tickets that are lost or damaged. Ticket is for promotional purposes. Use of tickets are subject to UsherBuddy's Terms of Sale found at </a><a href="http://www.usherbuddy.com/terms" class="s10">http://www.usherbuddy.com/terms</a></p>
+        </div>
+    
+    </body></html>

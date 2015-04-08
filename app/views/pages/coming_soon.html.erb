@@ -1,0 +1,27 @@
+<div id="content">
+
+<h2>Thanks for subscribing to <%= @city_name %> last-minute tickets!</h2>
+
+<p> We are currently launching in <%= @city_name %>, but we will gladly alert you when we are live in <%= @city_name %>!</p>
+<p>In the meantime, check out the cities where we have launched... I'm sure you have friends, an old college roommate, family, and that kid you haven't spoken to in 12 years to visit, right?</p>
+
+<h3>Current cities we have launched in:</h3>
+<ul class="coming-soon">
+	<% @active_cities.each do |city|%>
+  <li><%= link_to city.name, city.format_url, {:class=>'edit'} %></li>
+	<% end %>
+</ul>
+
+<h3>Things to keep you occupied in the meantime:</h3>
+<ul class="coming-soon">
+    <li>Check out the cities we have launched in above and <a href="http://wwww.hipmunk.com" class="edit">plan a trip</a>.</li>
+    <li><%= link_to "Write us", contact_path, {:class=>'edit'} %> incessantly begging us to launch in <%= @city_name %>.</li>
+    <li>Tell all your facebook friends how awesome <a href="http://www.facebook.com/UsherBuddy" class="edit">UsherBuddy</a> is... after you like us.</li>
+    <li>Tweet <a href="http://www.twitter.com/usherbuddy" class="edit">@UsherBuddy</a> and tell us how much we suck for not being in your city.</li>
+    <li>Refer your favorite venues to our <%= link_to "business page", business_landing_path, {:class=>'edit'} %> so you can score some discounted tickets once they sign up!</li>
+    
+<p> Thanks,
+<br> The UsherBuddy team </p>
+			
+
+</div><!--end #content-->

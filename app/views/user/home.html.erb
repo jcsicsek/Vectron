@@ -1,0 +1,182 @@
+<head>
+	<%= csrf_meta_tag %>
+	<script type="text/javascript"> // Countdown Timer and Swap out Sidebar Deals
+	
+	<% if true %>
+	    $(function () {
+		<% @user_event_types.each do |user_event_type| %>
+		<% if !EventType.find(user_event_type.event_type_id).active || !Voucher.get_featured(user_event_type.event_type_id) || !Voucher.get_featured(user_event_type.event_type_id).business_id %>
+		<% next %>
+		<% end %>
+		<% event = Voucher.get_featured(user_event_type.event_type_id)%>
+	         $('#<%= "deal-" + user_event_type.event_type_id.to_s %>').countdown({until: new Date('<%= event.js_event_date %>'), format: 'HMS'});
+		<% end %>
+	         });
+	
+	<% end %>
+	
+	
+		function setCountdown(eventDate, eventTypeId)
+		{
+			$(function () {
+				$('#deal-' + eventTypeId).countdown('destroy');
+			    $('#deal-' + eventTypeId).countdown({until: new Date(eventDate), format: 'HMS'});
+			});
+		}
+	
+		var featured = new Object;
+		<% @user_event_types.each do |user_event_type| %>
+			<% if !EventType.find(user_event_type.event_type_id).active || !Voucher.get_featured(user_event_type.event_type_id) || !Voucher.get_featured(user_event_type.event_type_id).business_id %>
+				<% next %>
+			<% end %>
+			featured["<%= user_event_type.event_type_id %>"] = "<%= Voucher.get_featured(user_event_type.event_type_id).id %>";
+		<% end %>
+	
+		function initialize_thumbs()
+		{
+			<% if user_signed_in? %>
+				<% @initial_thumbs.each do |thumb| %>
+					<% if (thumb.up) %>
+						var thumbs_up = document.getElementById('thumbs-up-<%= thumb.voucher.event_type_id %>')
+						if (<%= thumb.voucher_id %> == featured[<%= thumb.voucher.event_type_id %>] && thumbs_up != null)
+							thumbs_up.className = 'thumbs-up-selected';
+					<% elsif (thumb.down) %>
+						var thumbs_down = document.getElementById('thumbs-down-<%= thumb.voucher.event_type_id %>')
+						if (<%= thumb.voucher_id %> == featured[<%= thumb.voucher.event_type_id %>] && thumbs_down != null)
+							thumbs_down.className = 'thumbs-down-selected';
+					<% end %>
+				<% end %>
+			<% end %>
+		}
+
+		$(document).ready(function() {
+			initialize_thumbs();
+			<% @user_event_types.each do |user_event_type| %>
+				<% if !EventType.find(user_event_type.event_type_id).active || !Voucher.get_featured(user_event_type.event_type_id) || !Voucher.get_featured(user_event_type.event_type_id).business_id %>
+					<% next %>
+				<% end %>
+			    $('#<%= "no-user-rate-" + user_event_type.event_type_id.to_s %>').hide();
+			<% end %>
+		});
+	
+	
+		function swapFeatured(currentEventId, eventTypeId, eventId, eventTime, eventDescription, eventDetails, eventTitle, eventImageURL, voucherPrice, eventFullPrice, percentSavings, dollarSavings)
+		{
+			currentEventId = featured[eventTypeId]
+			if (currentEventId != eventId)
+			{
+				document.getElementById('title-' + eventTypeId).innerHTML = eventTitle;
+				document.getElementById('title-' + eventTypeId).href = '/deal/' + eventId;
+				document.getElementById('discount-price-' + eventTypeId).innerHTML = voucherPrice;
+				document.getElementById('normal-price-' + eventTypeId).innerHTML = eventFullPrice;
+				document.getElementById('percent-savings-' + eventTypeId).innerHTML = percentSavings;
+				document.getElementById('dollar-savings-' + eventTypeId).innerHTML = dollarSavings;
+				document.getElementById('featured-pic-' + eventTypeId).src = eventImageURL;
+				document.getElementById('description-' + eventTypeId).innerHTML = eventDescription;
+				document.getElementById('details-' + eventTypeId).innerHTML = eventDetails;
+				document.getElementById('buy-' + eventTypeId).href = '/checkout/' + eventId;
+				document.getElementById('view-' + eventId).src = '/images/viewing_deal.png';
+				document.getElementById('view-' + currentEventId).src = '/images/view_deal.png';
+				
+				setCountdown(eventTime, eventTypeId);
+				
+				featured[eventTypeId] = eventId;
+			}
+		}
+		
+		function newPopup(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=400,width=700,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+		}	
+	</script>
+</head>
+	<% @user_event_types.each do |user_event_type| %>
+		<% if !EventType.find(user_event_type.event_type_id).active || !Voucher.get_featured(user_event_type.event_type_id) || !Voucher.get_featured(user_event_type.event_type_id).business_id %>
+			<% next %>
+		<% end %>
+	
+	<% event = Voucher.get_featured(user_event_type.event_type_id)%>
+
+<article id="featured">
+    <div id="category">
+	<%= event.event_type.name %>
+		<span class="fr"><a class="toggle_button" id=<%= event.event_type.id.to_s + "-toggle" %> href="#">Hide/Show</a></span>
+    </div>
+    <div class=<%= event.event_type.id.to_s + "-toggle" %>>	
+	<h2><a id="title-<%= event.event_type.id.to_s %>" href="/deal/<%= event.id %>"><%= event.format_title.html_safe %></a></h2>
+	<div id="deals">
+		<span class="buy_ribbon">
+		        <p id="discount-price-<%= event.event_type.id.to_s %>"><%= event.format_discount_price %></p>
+		        <a id="buy-<%= event.event_type.id.to_s %>" class="<%= event.sold_out? ? "no_display" : "buy-image" %>" href=<%= "/checkout/" + event.id.to_s %>></a>
+		</span>
+	    <div id="deal-price">
+		<dl><dt>Price</dt><dd id="normal-price-<%= event.event_type.id.to_s %>"><%= event.format_normal_price %></dd></dl>
+		<dl><dt>Discount</dt><dd id="percent-savings-<%= event.event_type.id.to_s %>"><%= event.format_percent_savings %></dd></dl>
+		<dl><dt>Savings</dt><dd id="dollar-savings-<%= event.event_type.id.to_s %>"><%= event.format_dollar_savings %></dd></dl>	
+	    </div>
+	    <div class="shareOn">
+		<p>Share on:</p>
+		<!-- link_to "Facebook", '/share_on_facebook/' + event.id.to_s, {:class => "icon16 icon16-facebook"} -->
+		<a class="icon16 icon16-facebook" id="facebook-share-<%= event.event_type_id.to_s %>" href="" onclick="newPopup('<%= user_signed_in? ? event.facebook_url(current_user.id) : event.facebook_url %>'); return false;">Facebook</a>
+		<!-- link_to "Twitter", event.twitter_url, {:class => "icon16 icon16-twitter"} -->
+		<a class="icon16 icon16-twitter" id="twitter-share-<%= event.event_type_id.to_s %>" href="" onclick="newPopup('<%= user_signed_in? ?  escape_javascript(event.twitter_url(current_user.id)) : escape_javascript(event.twitter_url) %>'); return false;">Twitter</a>
+	    </div>
+	    <div id=<%= "deal-" + event.event_type.id.to_s %>></div> <!-- Countdown timer -->
+	</div>
+	<div class="featured_pic_holder">
+		
+		<div id="sold-out-<%= event.event_type_id %>" class="fr <%= event.sold_out? ? "featured_pic_sold_out" : "no_display" %>"><!-- no_display or featured_pic_sold_out --><span class="featured_pic_sold_out_text">Sold Out</span></div>
+		<%= image_tag event.get_photo_url, {:id => "featured-pic-" + event.event_type.id.to_s, :class => "featured_pic", :alt => "featured picture"} %>
+	</div>
+	<div style="width:185px;" class="fl">
+	<div id="showtime">
+		<h4>Showtime</h4>
+		<p id="showtime-p-<%= event.event_type.id.to_s %>"><%= event.format_event_date %></p>
+	</div>
+	<div id="rate">
+	    <h4>Teach Buddy!</h4>
+		<%= link_to ("<span class='thumbs-up' id='thumbs-up-" + event.event_type_id.to_s + "'></span>").html_safe, thumbs_up_path(:voucher_id => event.id), :remote => true, :id => "thumbs-up-link-" + event.event_type_id.to_s %>
+		<%= link_to ("<span class='thumbs-down' id='thumbs-down-" + event.event_type_id.to_s + "'></span>").html_safe, thumbs_down_path(:voucher_id => event.id), :remote => true, :id => "thumbs-down-link-" + event.event_type_id.to_s %>
+	    <div id ="no-user-rate-<%= event.event_type_id.to_s %>" style="display:none;" class="rate-login"><%= link_to "Login", users_login_path, {:class=>'edit'} %> or <%= link_to "signup", users_new_path, {:class=>'edit'} %> to get personalized recommendations!</div>
+	</div>
+	</div>
+	<div class="featured_left">
+	    <h3>Synopsis</h3>
+	    <p id="description-<%= event.event_type.id.to_s %>"><%= event.truncated_description.html_safe %></p>
+	</div>
+	<div class="featured_right">
+	    <h3>Cast and Crew</h3>
+	    <p id="details-<%= event.event_type.id.to_s %>"><%= event.truncated_details.html_safe %></p>
+	</div>
+    </div><!--End .EVENTTYPEID-div-->
+</article><!--End #Featured-->
+
+<section id="sidebar" class=<%= event.event_type.id.to_s + "-toggle" %>>
+	<h4>More <%= event.event_type.name %> Tickets</h4>
+	<% Voucher.get_unfeatured(event.event_type).each do |unfeatured_event| %>
+	<% if (unfeatured_event.id == event.id)
+		button_src = "/images/viewing_deal.png"
+	else
+		button_src = "/images/view_deal.png"
+	end %>
+	<% if false %>
+	<p><img id="view-<%= unfeatured_event.id %>" src="<%= button_src %>" onclick="swapFeatured(
+		'<%= event.id.to_s %>',
+		'<%= unfeatured_event.event_type.id.to_s %>',
+		'<%= unfeatured_event.id.to_s %>',
+		'<%= unfeatured_event.js_event_date %>',
+		'<%= escape_javascript(unfeatured_event.description) %>',
+		'<%= escape_javascript(unfeatured_event.details) %>',
+		'<%= escape_javascript(unfeatured_event.format_title) %>',
+		'<%= unfeatured_event.get_photo_url %>',
+		'<%= unfeatured_event.format_discount_price %>',
+		'<%= unfeatured_event.format_normal_price %>',
+		'<%= unfeatured_event.format_percent_savings %>',
+		'<%= unfeatured_event.format_dollar_savings %>');" /><%= unfeatured_event.format_blurb %></p>
+	<% end %>
+	<p><%= link_to image_tag(button_src, :id => "view-" + unfeatured_event.id.to_s), swap_featured_path(:voucher_id => unfeatured_event.id, :current_voucher_id => event.id), :remote => true, :onclick => "$('#LoadingDiv').show();" %>
+	<%= unfeatured_event.format_blurb.html_safe %></p>
+	<% end %>
+</section><!--End #sidebar .EVENTTYPEID-div-->
+
+<% end %>

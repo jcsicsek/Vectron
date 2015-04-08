@@ -1,0 +1,70 @@
+<div id="content">
+	<div class="panel clearfix">
+	<div style="float:right;"><a href="javascript:history.go(-1)" class="btn medium"><< Back</a></div>
+		<h1>Add or Modify An Event</h1>
+		<div>
+			<%= form_for(@voucher, :validate => true, :url => voucher_update_path, :html => { :multipart => true }) do |f| %>
+			<%= f.hidden_field :id %>
+			<div class="row">
+				<%= f.label :event_type, "Event Type:" %>
+				<%= f.collection_select(:event_type_id, EventType.all, :id, :name, {}, {:id=>'event_type', :size=>'30'}) %>
+			</div>
+			<div class="row">
+				<%= f.label :name, "Event/Show Name:" %>
+				<%= f.text_field :name, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :description, "Description:" %>
+				<%= f.text_area :description, {:class=>'ui-state-default', :size=>'70x6'} %>
+			</div>
+			<div class="row">
+				<%= f.label :details, "Additional Details (cast and crew, artists, etc.):" %>
+				<%= f.text_area :details, {:class=>'ui-state-default', :size=>'70x6'} %>
+			</div>
+			<div class="row">
+				<%= f.label :terms, "Terms and Conditions:" %>
+				<%= f.text_area :terms, {:class=>'ui-state-default', :size=>'70x6'} %>
+			</div>
+			<div class="row">
+				<%= f.label :photo, "Photo (from file):" %>  
+				<%= f.file_field :photo, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :photo_url, "Photo (from URL):" %>  
+				<%= f.text_field :photo_url, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :date_only, "Event Date:" %>
+				<%= f.text_field :date_only, {:class=>'ui-state-default', :id => 'event_cal'} %>
+			</div>
+			<div class="row">
+				<%= f.label :time_only, "Event Time:" %>
+				<%= f.text_field :time_only, {:class=>'ui-state-default', :id => 'event_time'} %>
+			</div>
+			<div class="row">
+				<%= f.label :full_value_cents, "Normal Price:" %>
+				<%= f.text_field :full_value_cents, {:class=>'ui-state-default currency'} %>
+			</div>
+			<div class="row">
+				<%= f.label :launched, "Launch Deal?" %>
+				<%= f.check_box :launched, {:class=>'ui-state-default launch-checkbox'} %>
+			</div>			
+			<div id="launch-options" style="display: none;">
+			<div class="row">
+				<%= f.label :voucher_price_cents, "Deal Price:" %>
+				<%= f.text_field :voucher_price_cents, {:class=>'ui-state-default currency'} %>
+			</div>
+			<div class="row">
+				<%= f.label :max_offers, "Seats Available:" %>
+				<%= f.text_field :max_offers, {:class=>'ui-state-default'} %>
+			</div>
+			</div>
+			<div class="row">
+				<%= f.submit 'Save', :class => 'btn primary large save' %>
+			</div>
+		<% end %>	
+		</div><!--end form-->
+    
+	</div><!--end #panel clearfix-->
+</div><!--end #content-->
+

@@ -1,0 +1,53 @@
+<div class="container">
+<div id="LoadingDiv" style="display:none;"><img src="/images/embed/ajax.gif" alt="" /></div>
+<div id="nav">
+    <div id="wrapper">
+        <h1 id="logo">
+            <%= link_to image_tag("/images/embed/logo.png", :border=>0), root_path %>
+        </h1>
+        <ul>
+			<% if admin_signed_in? %>
+                    <li><%= link_to "Admin Sign out (" + current_admin.email + ")", destroy_admin_session_path %></li>
+			<% end %>
+            <% if user_signed_in? %>
+                    <li><%= link_to "Sign out (" + current_user.email + ")", users_logout_path %></li>
+                    <li><%= link_to "My Account", account_path %></li>
+                    <!--<li><a href="#">How It Works</a></li>-->
+                    <!--<li><a href="#">All Events</a></li>-->
+                    <li><%= link_to "My Events", home_path %></li>
+            <% elsif business_signed_in? %>
+                    <li><%= link_to "Sign out (" + current_business.email + ")", business_logout_path %></li>
+                    <li><%= link_to "Manage My Business", business_account_path %></li>
+            <% elsif controller.controller_name == "business" %>
+                    <li><%= link_to "Business Login", business_login_path %></li>
+                    <li><%= link_to "Business Sign up", business_new_path %></li>
+            <% elsif cookies[:subscriber_id] && !cookies[:user_id] && !cookies[:business_id] %>
+                    <li><%= link_to "Finish Sign Up", users_new_path %></li>
+                    <li><%= link_to "My Events", home_path %></li>
+            <% else %>
+                    <li><%= link_to "Login", users_login_path %></li>
+                    <li><%= link_to "Sign up", users_new_path %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+
+<div id="wrapper">
+    <% if user_signed_in? || business_signed_in? || cookies[:user_id] || cookies[:business_id] %>
+        <!-- nada -->
+    <% elsif controller.controller_name == "business" %>
+        <div id="finish_registration">
+            Hey! Are you a business? Get <a href="/business/new">signed up</a> with UsherBuddy to get rid of unused inventory. Buddy loves to fill your seats!
+        </div>
+	<% elsif cookies[:promo] %>
+	    <div id="finish_registration">
+	        Please finish setting up <a href="/users/new">your account</a> to redeem your UsherBuddy credit! Buddy will be a sad monkey if you don't, and no one likes a sad monkey.
+	    </div>
+    <% elsif cookies[:subscriber_id]  %>
+        <div id="finish_registration">
+            Please finish setting up <a href="/users/new">your account</a> to get better personalized deals! Buddy will be a sad monkey if you don't, and no one likes a sad monkey.
+        </div>
+    <% else %>
+       <!-- nada --> 
+    <% end %>
+        

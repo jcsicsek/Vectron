@@ -1,0 +1,278 @@
+<script type="text/javascript">
+	function formatCurrency(valueInCents)
+	{
+		valueInCents = valueInCents.toString();
+		if (valueInCents == "0")
+			valueInCents = "000"
+		var dollars = valueInCents.substring(0, valueInCents.length - 2);
+		var cents = valueInCents.substring(valueInCents.length - 2, valueInCents.length);
+		var formattedPrice = "$" + dollars + "." + cents;
+		return formattedPrice;
+	}
+	
+	function updateTotalPrice()
+	{
+		var quantity = document.getElementById('order_amount').value;
+		document.getElementById('cart_order_amount').value = quantity;
+		var unitPrice = document.getElementById('unitPrice').innerHTML;
+		unitPrice = parseInt(unitPrice.replace("$", "").replace(".", ""));
+		var totalPrice = unitPrice * parseInt(quantity);
+		var preDiscountTotal = totalPrice;
+		var accountBalance = <%= @account_balance %>;
+		var discount = 0;
+		if (accountBalance > 0 && accountBalance <= totalPrice)
+		{
+			totalPrice -= accountBalance;
+			discount = accountBalance
+			accountBalance = 0;
+			document.getElementById('discount').innerHTML = "-" + formatCurrency(discount) + " UsherBuddy Credit";
+			document.getElementById('balance').innerHTML = formatCurrency(accountBalance) + " UsherBuddy Credit remaining after this purchase.";
+		}
+		else if (accountBalance > 0 && accountBalance > totalPrice)
+		{
+			discount = totalPrice;
+			accountBalance -= totalPrice;
+			totalPrice = 0;
+			document.getElementById('discount').innerHTML = "-" + formatCurrency(discount) + " UsherBuddy Credit";
+			document.getElementById('balance').innerHTML = formatCurrency(accountBalance) + " UsherBuddy Credit remaining after this purchase.";
+		}
+		else
+		{
+			document.getElementById('discount').innerHTML = "";
+			document.getElementById('balance').innerHTML = "";
+		}
+		var formattedPrice = formatCurrency(totalPrice);
+		var formattedPreDiscountPrice = formatCurrency(preDiscountTotal);
+		document.getElementById('totalPrice').innerHTML = formattedPreDiscountPrice;
+		document.getElementById('grandTotalPrice').innerHTML = formattedPrice;
+	}
+	
+	$(document).ready(function() {
+	  	updateTotalPrice();
+	});
+	
+	
+
+</script>
+
+<div id="content">
+        <h1>Purchase an Event Ticket</h1>
+        <table id="purchase_events" class="tablesorter"> 
+            <thead> 
+                <tr> 
+                    <th style="width:8%;"></th>
+                    <th style="width:14%">Name</th>
+                    <th style="width:51%;">Description</th> 
+                    <th style="width:12%;">Date</th> 
+                    <th style="width:5%;">Quantity</th>
+                    <th style="width:5%;">Price</th>
+                    <th style="width:5%;">Total</th>
+                </tr> 
+            </thead> 
+            <tbody> 
+                <tr> 
+                    <td><%= image_tag(@voucher.get_photo_url, {:width => "100", :height=> "auto", :title => @voucher.name, :alt => @voucher.name}) %></td>
+                    <td><%= @voucher.format_title %></td>
+                    <td><%= @voucher.truncated_description.html_safe %></td> 
+                    <td><%= @voucher.format_date_only + " at " + @voucher.format_time_only %></td>
+		    <td class="quantity"><%= text_field_tag :order_amount, 1, :maxlength=>'3', :class=>'numerical_input', :onBlur=>'updateTotalPrice();' %></td>
+                    <td id="unitPrice"><%= @voucher.format_discount_price %></td>
+                    <td id="totalPrice"><%= @voucher.format_discount_price %></td>
+                </tr>
+             </tbody> 
+        </table>
+        <div id ="discount" class="fr mt10"></div>
+        <div class="clear"></div>
+        <div id = "grandTotalPrice" style="width:90%;background:#be1e2d;padding:5px 5%;color:#FFF;text-align:right;font-size:1.3em;font-weight:bold;">My Total: <%= @voucher.format_discount_price %></div>
+        <div id ="balance" class="fr mb10"></div>
+        <div class="clear"></div>
+
+        <% if !user_signed_in? %>
+        <div id="new_user">
+                <div class="panel clearfix">
+                <h2 class="signup">Payment Information </h2>
+				<div id="sign_in_box" class="c50r2 mn15t">
+		                <h3>Already Registered?</h3>
+		                        <p>If you are already registered you can login below.</p>
+		                        <%= form_for("user", :url => quick_signin_path) do |f| %>
+		                        <div class="row">
+		                                <%= f.label :login, "Username or Email Address" %><br />
+		                                <%= f.text_field :login, {:class=>'ui-state-default'} %>
+		                        </div>
+		                        <div class="row">
+		                                <%= f.label :password, "Password" %><br />
+		                                <%= f.password_field :password, {:class=>'ui-state-default'} %><br />
+		                        </div>
+		                        <div class="row">
+		                                <%= f.label :remember_me, "Remember Me" %>
+		                                <%= f.check_box :remember_me, {:class=>'remember_me'} %><br />
+		                        </div>
+		                        <div class="row">
+		                                <%= f.submit 'Sign in', :class => 'btn primary large signup' %>
+		                        </div>
+		                        <div class="row">
+		                                <%= link_to 'Forgot password?', new_user_password_path, {:class=>'edit'} %>
+		                        </div>
+		                <% end %>
+		                        <h4>Or use Facebook connect.</h4>
+		                        <%= link_to image_tag("/images/facebook-login.png", :border=>0), user_omniauth_authorize_path(:facebook) %>
+		                        <div class="mt20 mb20"></div>
+		        </div><!--end .c50r-->
+		<% end %>
+		
+		<%= form_for(@cart, :validate => true, :url => "/buy/" + @voucher.id.to_s) do |f| %>
+		<%= f.hidden_field :order_amount, {:value=>'1'} %>
+		
+		<% if !user_signed_in? %>
+
+                        <div style="margin-right: 20px;" class="c50l">
+                        <%= fields_for(@user, :validate => true, :url => user_registration_path) do |f| %>
+                                <div class="row">
+                                        <%= f.label :first_name, "First Name:" %><br />
+                                        <%= f.text_field :first_name, {:class=>'ui-state-default'} %>
+                                </div>
+                                <div class="row">
+                                        <%= f.label :last_name, "Last Name:" %><br />
+                                        <%= f.text_field :last_name, {:class=>'ui-state-default'} %>
+                                </div>
+                                <div class="row">
+                                <% if cookies[:subscriber_id]  %>
+                                        <%= f.label :email, "Email Address:" %><br />
+                                        <%= f.text_field :email, {:class=>'ui-state-default', :value=>Subscriber.find(cookies[:subscriber_id]).email} %>
+                                <% else  %>
+                                        <%= f.label :email, "Email Address:" %><br />
+                                        <%= f.text_field :email, {:class=>'ui-state-default'} %>
+                                <% end %>
+                                </div>
+                                <div class="row">
+                                        <%= f.label :city_id, "City:" %><br />
+                                        <%= f.collection_select(:city_id, City.all, :id, :name, {}, {:id=>'user_city'}) %>
+                                </div>
+                                <div class="row">
+                                        <%= f.label :password, "Password:" %><br />
+                                        <%= f.password_field :password, {:class=>'ui-state-default', :validate => true} %>
+                                </div>
+                                <div class="row">
+                                        <%= f.label :password_confirmation, "Password Confirmation:" %><br />
+                                        <%= f.password_field :password_confirmation, {:class=>'ui-state-default'} %>
+                                </div>
+                                <div class="row">
+                                        <p class="terms">I agree to UsherBuddy's <a href="/terms" class="edit" target="_blank">Terms and Conditions</a> and <a href="/privacy" class="edit" target="_blank">Privacy Policy</a>.</p>
+                                </div>
+                        <% end %>
+                        </div><!--end .c50l-->
+                        <div class="clear"></div>
+        <% end %>
+					<% if user_signed_in? %>
+                        <table id="saved_user_payments" class="tablesorter sort"> 
+                                <thead> 
+                                    <tr> 
+                                        <th style="width:7%;"></th> 
+                                        <th style="width:21%;">Payment Type</th> 
+                                        <th style="width:36%;">Account Details</th> 
+                                        <th style="width:36%;">Date Added</th> 
+                                    </tr> 
+                                </thead> 
+                                <tbody> 
+                                        <% @user.payment_profiles.each do |payment_profile| %>
+                                        <tr>
+                                            
+                                                <td><%= f.radio_button :profile_id, payment_profile.id.to_s, {:class=>'radio_payment', :checked => payment_profile.id == @user.default_payment_profile_id} %></td>
+                                                <td>Credit Card</td>
+                                                <td><%= payment_profile.get_cc_number %></td>
+                                                <td><%= payment_profile.print_date_added %></td>
+                                        </tr>
+                                        <% end %>
+                                        <tr>
+                                                <td><input type="radio" name="cart[profile_id]" class="radio_payment new_card_radio" value="new" id="cart_profile_id_new" <% if @user.payment_profiles.count == 0 %>checked="true"<% end %>></td>
+                                                <td>Add a New Credit Card...</td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="radio" name="cart[profile_id]" class="radio_payment paypal_radio" value="paypal"></td>
+                                                <td><img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" align="left" style="margin-right:7px;"><span style="font-size:11px; font-family: Arial, Verdana;"></span></td>
+                                        </tr>
+                                </tbody> 
+                        </table>
+					<% else %>
+						<table>
+	                    <tr>
+	                            <td><input type="radio" name="cart[profile_id]" class="radio_payment new_card_radio" value="new" id="cart_profile_id_new" <% if @user.payment_profiles.count == 0 %>checked="true"<% end %>></td>
+	                            <td>Pay with Credit Card...</td>
+	                    </tr>
+	                    <tr>
+	                            <td><input type="radio" name="cart[profile_id]" class="radio_payment paypal_radio" value="paypal"></td>
+	                            <td><img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" align="left" style="margin-right:7px;"><span style="font-size:11px; font-family: Arial, Verdana;"></span>Pay with PayPal...</td>
+	                    </tr>
+						</table>
+					<% end %>
+                        <div id="new_card_options" style="display: none;">               
+                                <div class="c50l">
+                                <%= fields_for(@new_credit_card, :validate => true, :url => create_payment_profile_path) do |f| %>
+                                        <div class="row">
+                                            <%= f.label :first_name, "Cardholder First Name:" %>
+                                            <%= f.text_field :first_name, {:class=>'ui-state-default', :validate => true} %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :last_name, "Cardholder Last Name:" %>
+                                            <%= f.text_field :last_name, {:class=>'ui-state-default'} %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :card_type, "Card Type (e.g. Visa):" %>
+                                            <%= f.collection_select(:card_type, CreditCardType.all, :name, :display_name, {}, {}) %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :card_number, "Card Number:" %>
+                                            <%= f.text_field :card_number, {:class=>'ui-state-default'} %>
+                                        </div>
+                                </div><!--end .c50l-->
+                                <div class="c50r">
+                                        <div class="row">
+                                            <%= f.label :security_code, "Security Code:" %>
+                                            <%= f.text_field :security_code, {:class=>'ui-state-default'} %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :expiry_month, "Expiration Date Month (MM):" %>
+                                            <%= f.text_field :expiry_month, {:class=>'ui-state-default'} %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :expiry_year, "Expiration Date Year (YYYY):" %>
+                                            <%= f.text_field :expiry_year, {:class=>'ui-state-default'} %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :zip, "Zip Code:" %>
+                                            <%= f.text_field :zip, {:class=>'ui-state-default'} %>
+                                        </div>
+	<% if false %>
+                                        <div class="row">
+                                            <%= f.label :address, "Address:" %>
+                                            <%= f.text_field :address, {:class=>'ui-state-default'} %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :city, "City:" %>
+                                            <%= f.text_field :city, {:class=>'ui-state-default'} %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :state, "State:" %>
+                                            <%= f.state_select(:state) %>
+                                        </div>
+                                        <div class="row">
+                                            <%= f.label :phone, "Phone Number:" %>
+                                            <%= f.text_field :phone, {:class=>'ui-state-default'} %>
+                                        </div>
+	<% end %>
+                                <% end %>
+                                </div><!--end .c50r-->
+                        </div><!--end #new_card_options-->
+                
+
+        <span style="float:right;">
+                <%= f.submit 'Secure Checkout', :class => 'btn large danger', :id=>"cart_submit" %><br>
+			<% if false %>
+                <span id="cart_span"><img src="/images/orUse.jpg"> </span> <br>
+                <%= f.submit "Paypal", :type => :image, :src => "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif", :id => "paypal_submit" %>
+			<% end %>
+                </span>
+<% end %>
+                </div><!--end .panel .clearfix-->
+        </div>
+</div>

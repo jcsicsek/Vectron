@@ -1,0 +1,2180 @@
+{
+  "items": [
+    {
+      "text": "Blues",
+      "model": "Genre",
+      "info": "",
+      "leaf": false,
+      "items": [
+        {
+          "text": "B.B.King",
+          "model": "Artist",
+          "info": "<p>Riley B. King aka B. B. King (born September 16th, 1925 in Itta Bena, Mississippi) is a well known American blues guitarist and songwriter. He is among the most respected electric guitarists. </p><p>One of King’s trademarks is naming his guitar (Gibson ES335) “Lucille”. In the 1950s in a bar in Twist, Arkansas two men got into a fight, accidentally knocking over a bucket of burning kerosene (used for heating) and setting the establishment on fire. Risking his life, B.B. King ran back into the collapsing building to retrieve his guitar.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Live in Cook County Jail",
+              "model": "Album",
+              "info": "<p>Live in Cook County Jail is a 1971 live album by B.B. King recorded in Cook County Jail, Chicago, Illinois. It was ranked as number 499 in the book version of Rolling Stone's 500 Greatest Albums of All Time.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Introduction",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 96,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Every Day I Have The Blues",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 189,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "How Blue Can You Get?",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 167,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Worry, Worry, Worry",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 141,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "3 O'Clock Blues",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 144,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Darlin' You Know I Love You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 97,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Sweet Sixteen",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 175,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The Thrill Is Gone",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Please Accept My Love",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 155,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "John Mayall's Bluesbreakers",
+          "model": "Artist",
+          "info": "<p>John Mayall & the Bluesbreakers are a pioneering English blues band, led by singer, songwriter, and multi-instrumentalist John Mayall, OBE. Mayall used the band name between 1963 and ‘67 then dropped it for some fifteen years, but in 1982 a ‘Return of the Bluesbreakers’ was announced and it has been kept since then. The name has become generic without a clear distinction which recordings are to be credited just to the leader or to leader and his band. </p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "A Hard Road",
+              "model": "Album",
+              "info": "<p>A Hard Road is a 1967 electric blues album recorded by John Mayall & the Bluesbreakers featuring Peter Green on lead guitar, John McVie on bass, Aynsley Dunbar on drums and John Almond. Tracks 5, 7 and 13 feature the horn section of Alan Skidmore and Ray Warleigh. Peter Green sings lead vocals on “You Don't Love Me” and “The Same Way.” The notable instrumental track “The Supernatural”, a guitar improvisation in the key of D minor, has much in common with Peter Green's later hit composition “Black Magic Woman”.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "A Hard Road",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 141,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "It's Over",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 149,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "You Don't Love Me",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 169,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The Stumble",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 149,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Another Kind Of Love",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 125,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Hit The Highway",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 119,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Leaping Christine",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 132,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Dust My Blues",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 140,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "There's Always Work",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 100,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The Same Way",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 146,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The Supernatural",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 105,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Top Of The Hill",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 112,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Someday After A While (You'll Be Sorry)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 145,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Living Alone",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 181,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "The Beano Album",
+              "model": "Album",
+              "info": "<p>Blues Breakers is a 1966 electric blues album credited to John Mayall with Eric Clapton. The band name John Mayall & the Bluesbreakers, that was used by the band consequently is derived from the title of this album, no original issues mention The Bluesbreakers as band name. The album was also known as The Beano Album because of its cover photograph showing Clapton reading The Beano, a well-known British children's comic. Clapton stated in his autobiography that he was reading Beano on the cover because he felt like being 'uncooperative' during the photo shoot.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "All your love",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 115,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Hideaway",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 177,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Little Girl",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 118,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Another Man",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 108,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Double Crossin' Time",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "What'd I Say",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 155,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Key to Love",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 144,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Parchman Farm",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 141,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Have you Heard",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 156,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "All your love",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Hideaway",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 103,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "It ain't Right",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 145,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Lonely Years",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 172,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Bernard Jenkins",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 99,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Stevie Ray Vaughan",
+          "model": "Artist",
+          "info": "<p>Stephen (“Stevie”) Ray Vaughan, born in Dallas, Texas (October 3, 1954 – August 27, 1990) was an American blues guitar legend, and is known as one of the most influential blues musicians in history.</p><p>Stevie Ray had been in numerous bands before joining blues rock combo Stevie Ray Vaughan and Double Trouble in the late 1970’s.</p><p>Stevie Ray Vaughan and Double Trouble’s debut album was released in 1983. The critically acclaimed Texas Flood (1983) featured the top-20 hit Pride And Joy and sold well in both blues and rock circles.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Couldn't stand the weather",
+              "model": "Album",
+              "info": "<p>Couldn't Stand the Weather is the second studio album by Stevie Ray Vaughan and Double Trouble, released in 1984.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Scuttle Buttin'",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 113,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Couldn't Stand The Weather",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 99,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The Things (That) I Used To Do",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 146,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Voodoo Chile (Slight Return)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 162,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Cold Shot",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 96,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Tin Pan Alley",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 123,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Honey Bee",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 166,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Stang's Swang",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 132,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Soul to soul",
+              "model": "Album",
+              "info": "<p>Soul to Soul is the third studio album by Stevie Ray Vaughan and Double Trouble, and was released in 1985. It has been certified platinum by RIAA. Soul to Soul saw the addition of a new band member, keyboardist Reese Wynans, to the Double Trouble power trio. Wynans would stay with the group until Vaughan's death in 1990.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Say What!",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 134,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Lookin' Out The Window",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 98,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Look At Little Sister",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 152,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Ain't Gone 'n' Give Up On Love",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 105,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Gone Home",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 111,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Change It",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 135,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "You'll Be Mine",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 124,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Empty Arms",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 107,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Come On (Part III)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 116,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Life Without You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 106,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Texas Flood",
+              "model": "Album",
+              "info": "<p>Texas Flood is the debut album of American blues musician Stevie Ray Vaughan and his band Double Trouble, released June 13, 1983 on Epic Records. The album was recorded in only three days, at Jackson Browne's personal recording studio, in 1982 since the band had been playing many live sets beforehand.</p><p>More popular than any blues album in nearly twenty years, Texas Flood was a surprise success for Vaughan, who had labored in obscurity for years. On the North American Billboard Music Charts, Texas Flood peaked at #64 and #38 on the Billboard 200 and Pop Albums charts, respectively. The single “Pride and Joy” peaked at #20 on the Mainstream Rock chart. The album was Grammy nominated in 1983 for “Best Blues Recording” along with “Rude Mood”, which was nominated for “Best Blues Instrumental Performance”.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Love Struck Baby",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 158,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Pride And Joy",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 120,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Texas Flood",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 165,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Tell Me",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 129,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Testify",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 166,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Rude Mood",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 106,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Mary Had A Little Lamb",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Dirty Pool",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 170,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "I'm Cryin'",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 120,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Lenny",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Jazz",
+      "model": "Genre",
+      "info": "",
+      "leaf": false,
+      "items": [
+        {
+          "text": "Charles Mingus",
+          "model": "Artist",
+          "info": "<p>Charles Mingus (22nd April 1922 – 5th January 1979) was an American jazz bassist, composer, bandleader, and occasional pianist. He was also known for his activism against racial injustice.</p><p>Mingus’ legacy is notable: he is ranked among the finest composers and performers in jazz, and recorded many highly regarded albums. Dozens of musicians passed through his bands and later went on to impressive careers.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Blues and Roots",
+              "model": "Album",
+              "info": "<p>Blues & Roots is an album by Charles Mingus, recorded in 1959 and released in 1960. It has been reissued twice as a CD, first by Atlantic Records, and then again by Rhino Entertainment in 1998.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Wednesday Night Prayer Meeting",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 147,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Cryin' Blues",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 130,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Moanin'",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 126,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Tensions",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 142,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "My Jelly Roll Soul",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 90,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "E's Flat Ah's Flat Too",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 146,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Mingus Ah Um",
+              "model": "Album",
+              "info": "<p>Mingus Ah Um is a jazz album by Charles Mingus, recorded and released on Columbia Records in 1959, as CK 65512. It was his first album recorded for Columbia. The cover features a painting by S. Neil Fujita.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Better Git It In Your Soul",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 112,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Goodbye Pork Pie Hat",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 168,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Boogie Stop Shuffle",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 121,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Self-Portrait In Three Colors",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 124,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Open Letter To Duke",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 139,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Bird Calls",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 166,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Fable Of Faubus",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 167,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Pussy Cat Dues",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 122,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Jelly Roll",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 120,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "John Coltrane",
+          "model": "Artist",
+          "info": "<p>John William Coltrane (Hamlet, North Carolina, September 23, 1926 – Huntington, New York, July 17, 1967) was an American jazz saxophonist and composer.</p><p>American jazz great John Coltrane emerged in the 1950s, playing tenor and soprano sax with Dizzy Gillespie, Miles Davis and Thelonious Monk. A leader of “hard bop”, in the 1960s he led his own groups and changed the face of jazz with experimentation and improvisation, his later recordings reflecting his belief that music was a form of spiritual expression.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "A Love Supreme",
+              "model": "Album",
+              "info": "<p>A Love Supreme is a jazz studio album recorded by John Coltrane's quartet in December 1964[13] and released by Impulse! Records (catalogue number AS-77) in February 1965. It is generally considered to be among Coltrane's greatest works, as it melded the hard bop sensibilities of his early career with the free jazz style he adopted later.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Part I: Acknowledgement",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 104,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Part II: Resolution",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 96,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Part III: Pursuance",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 100,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Part IV: Psalm",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 111,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "My Favorite Things",
+              "model": "Album",
+              "info": "<p>My Favorite Things is a 1961 jazz album by John Coltrane. It was the first session recorded by Coltrane on the Atlantic Records label (as SD-1361), and the first to introduce his new quartet featuring McCoy Tyner (piano), Elvin Jones (drums) and Steve Davis (bass) -- neither Jimmy Garrison nor Reggie Workman featured as yet.</p> <p>The album was also the first to quite clearly mark Coltrane's change from bebop to free- and modal jazz, which was slowly becoming apparent in some of his previous releases. It introduces complex harmonic reworkings of such jazz standards as “My Favorite Things” and “But Not for Me”. Additionally, at a time when the soprano saxophone was little used in jazz, it demonstrated Coltrane's further investigation of the instrument's capabilities.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "My Favourite Things",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 139,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Everytime we say Goodbye",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 138,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Summertime",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 136,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "But not for me",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 183,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Miles Davis",
+          "model": "Artist",
+          "info": "<p>Miles Davis (Miles Dewey Davis III, Alton, Illinois, May 25, 1926 – Santa Monica, California, September 28, 1991) was an American trumpeter, bandleader and composer.</p><p>Davis was at the forefront of almost every major development in jazz after World War II. He was one of the most influential and innovative musicians of the 20th century.</p><p>Widely considered one of the most influential musicians of the 20th century, Miles Davis was, with his musical groups, at the forefront of several major developments in jazz music, including bebop, cool jazz, hard bop, modal jazz, and jazz fusion.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Kind of Blue",
+              "model": "Album",
+              "info": "<p>Kind of Blue is a studio album by American jazz musician Miles Davis, released August 17, 1959, on Columbia Records in the United States. Recording sessions for the album took place at Columbia's 30th Street Studio in New York City on March 2 and April 22, 1959. The sessions featured Davis's ensemble sextet, which consisted of pianists Bill Evans and Wynton Kelly, drummer Jimmy Cobb, bassist Paul Chambers, and saxophonists John Coltrane and Julian “Cannonball” Adderley. After the inclusion of Bill Evans into his sextet, Davis followed up on the modal experimentations of Milestones (1958) and 1958 Miles (1958) by basing the album entirely on modality, in contrast to his earlier work with the hard bop style of jazz.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "So What",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 113,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Freddie Freeloader",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 150,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Blue in Green",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 121,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "All Blues",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 134,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Flamenco Sketches",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 185,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Round About Midnight",
+              "model": "Album",
+              "info": "<p>'Round About Midnight is an album by jazz musician Miles Davis. It was his debut on Columbia Records, and was originally released in March 1957 (CL 949). The album took its name from the Thelonious Monk song “'Round Midnight”.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "'Round Midnight",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 153,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Ah-Leu-Cha",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 170,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "All of You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 152,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Bye Bye Blackbird",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 100,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Tadd's Delight",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 182,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Dear Old Stockholm",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 141,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Two Bass Hit",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 113,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Little Melonae",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 155,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Budo",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 183,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Sweet Sue, Just You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 184,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Pop",
+      "model": "Genre",
+      "info": "",
+      "leaf": false,
+      "items": [
+        {
+          "text": "David Bowie",
+          "model": "Artist",
+          "info": "<p>David Bowie (born David Robert Jones on 8th January 1947 in Brixton, London, England, United Kingdom) is an English singer, songwriter, musician, and actor. Active in five decades of popular music and frequently reinventing his music and image, Bowie is widely regarded as an innovator, particularly for his work in the 1970s. He has been cited as an influence by many musicians and is known for his distinctive voice and the intellectual depth of his work.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Changesbowie",
+              "model": "Album",
+              "info": "<p>Changesbowie is a compilation album by David Bowie, released in 1990 in the United States by Rykodisc and by EMI in the UK as part of Rykodisc's Bowie remastering program, to replace the deleted RCA Records compilation Changesonebowie.</p><p>While the cover artwork was generally dismissed as amateurish (“a sixth-form cut 'n' paste collage”, according to author David Buckley), the collection made #1 in the UK, giving Bowie his first chart-topping album since Tonight in 1984.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Space Oddity",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 101,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "John, I'm Only Dancing",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 154,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Changes",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 105,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Ziggy Stardust",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 181,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Suffragette City",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 169,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The Jean Genie",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Diamond Dogs",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 162,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Rebel Rebel",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 125,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Young Americans",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 130,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Fame ('90 Remix)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 129,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Golden Years",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 131,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Heroes",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 186,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Ashes to Ashes",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 110,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Fashion",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 118,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Let's Dance",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 113,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "China Girl",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 120,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Modern Love",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 181,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Blue Jean",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Space Oddity",
+              "model": "Album",
+              "info": "<p>Space Oddity is a 1969 album by rock musician David Bowie. Originally released by Philips in the UK as David Bowie and by Mercury in the U.S. as Man of Words/Man of Music, it was reissued by RCA Records in 1972 under its current title.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Space Oddity",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 107,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Unwashed and Somewhat Slightly Dazed",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 156,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "(Don't Sit Down)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 103,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Letter to Hermione",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 137,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Cygnet Committee",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 90,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Janine",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 181,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "An Occasional Dream",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 138,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Wild Eyed Boy From Freecloud",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 105,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "God Knows I'm Good",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 127,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Memory of a Free Festival",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 136,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "The Beatles",
+          "model": "Artist",
+          "info": "<p>The Beatles were an iconic rock group from Liverpool, England. They are frequently cited as the most commercially successful and critically acclaimed band in modern history, with innovative music, a cultural impact that helped define the 1960s and an enormous influence on music that is still felt today. Currently, The Beatles are one of the two musical acts to sell more than 1 billion records, with only Elvis Presley having been able to achieve the same feat.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Abbey Road",
+              "model": "Album",
+              "info": "<p>Abbey Road is the eleventh official album released by The Beatles. Though work on Abbey Road began in April 1969, making it the twelfth and final album recorded by the band; Let It Be was the last album released before the Beatles’ dissolution in 1970. Abbey Road was released on 26 September 1969 in the United Kingdom, and 1 October 1969 in the United States. It was produced and orchestrated by George Martin for Apple Records. Geoff Emerick was engineer, Alan Parsons was assistant engineer, and Tony Banks was tape operator. It is regarded as one of The Beatles’ most tightly constructed albums, although the band was barely operating as a functioning unit at the time. Rolling Stone magazine named it the 14th greatest album of all time.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Come Together",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 102,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Something / Jam",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 170,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Maxwell's Silver Hammer",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 167,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Oh! Darling",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 132,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Octopus's Garden",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 102,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "I Want You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 118,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Come and Set It",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 159,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Oh, I Want You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 134,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Because",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 172,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "You Never Give Me Your Money",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 182,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Sun King",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 143,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Mean Mr. Mustard",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 126,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Her Majesty",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 144,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Polythene Pam",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 175,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "She Came in Through the Bathroom Window",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 97,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Golden Slumbers",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 150,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Carry That Weight",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The End",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 175,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Ain't She Sweet (Rock'n'Roll Jam)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 144,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Something (Harrison Solo)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 113,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Maxwell's Silver Hammer (take 5)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 170,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Octopus's Garden (take 2)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 91,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "You Never Give Me Your Money (take 30)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 93,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Golden Slumbers / Carry That Weight (take 13)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 112,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "The End (remix)",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 119,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Revolver",
+              "model": "Album",
+              "info": "<p>Revolver is the seventh album by English rock group The Beatles, released on 5 August 1966. Many of the tracks on Revolver are marked by an electric guitar-rock sound, in contrast with their previous, folk rock inspired Rubber Soul. It reached number one on both the British chart and American chart and stayed at the top spot for seven weeks and six weeks, respectively.</p> <p>Placed at number 3 in the Rolling Stone magazine's list of the 500 greatest albums of all time, the album is often regarded as one of the greatest achievements in rock music history and one of The Beatles' greatest studio achievements.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Taxman",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 155,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Eleanor Rigby",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 154,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "I'm Only Sleeping",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 97,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Love You To",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 145,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Here, There and Everywhere",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 180,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Yellow Submarine",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 139,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "She Said, She Said",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 147,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Good Day Sunshine",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "And Your Bird Can Sing",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 101,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "For No One",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 159,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Doctor Robert",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 114,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "I Want to Tell You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 170,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Got to Get You into My Life",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 179,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Tomorrow Never Knows",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 186,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Rock",
+      "model": "Genre",
+      "info": "",
+      "leaf": false,
+      "items": [
+        {
+          "text": "AC/DC",
+          "model": "Artist",
+          "info": "<p>AC/DC are an Australian rock band, formed in 1973 by brothers Malcolm and Angus Young. Although the band are commonly classified as hard rock and are considered a pioneer of heavy metal, they have always classified their music as rock and roll. To date they are one of the highest grossing bands of all time. AC/DC underwent several line-up changes before releasing their first album, High Voltage, in 1975. Membership remained stable until bassist Mark Evans was replaced by Cliff Williams in 1978 for the album Powerage. Within months of recording the album Highway to Hell, lead singer and co-songwriter Bon Scott died on 19 February 1980, after a night of heavy alcohol consumption. The group briefly considered disbanding, but Scott's parents urged them to continue and hire a new vocalist. Ex-Geordie singer Brian Johnson was auditioned and selected to replace Scott. Later that year, the band released their highest selling album, Back in Black.</p>",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Back in Black",
+              "model": "Album",
+              "info": "<p>Back in Black is an album by Australian rock band AC/DC. It is the seventh Australian and sixth internationally released studio album by the band.</p><p>Released on 25 July 1980, Back in Black was the first AC/DC album recorded without former lead singer Bon Scott, who died on 19 February 1980 at the age of 33, and was dedicated to him. The band considered disbanding following Scott's death, but they ultimately decided to continue and shortly thereafter hired Brian Johnson as their new lead singer and lyricist. Producer Robert John “Mutt” Lange, who had previously worked with AC/DC on Highway to Hell, was again brought in to produce. The recordings were made at Compass Point Studios in Nassau, Bahamas, and Electric Lady Studios in New York, where the album was also mixed.</p>",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Hells Bells",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 147,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Shoot to Thrill",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 108,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "What do you do for money honey",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 121,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Give the dog a bone",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 108,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Let me put my love into you",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 127,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Back in Black",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 190,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "You shook me all night long",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 163,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Have a drink on me",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 121,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Shake a leg",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 187,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Rock and roll ain't noise pollution",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 90,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Nirvana",
+          "model": "Artist",
+          "info": "Nirvana's raw music was a reaction against the glam rock of the previous decade.",
+          "leaf": false,
+          "items": [
+            {
+              "text": "Nevermind",
+              "model": "Album",
+              "info": "This seminal album changed the face of music forever.",
+              "leaf": false,
+              "items": [
+                {
+                  "text": "Smells Like Teen Spirit",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 167,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "In Bloom",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 98,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Come As You Are",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 120,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Breed",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 172,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Lithium",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 187,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Polly",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 108,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Territorial Pissings",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 106,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Drain You",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 177,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Lounge Act",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 182,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Stay Away",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 125,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "On A Plain",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 91,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                },
+                {
+                  "text": "Something In The Way",
+                  "model": "Track",
+                  "info": "",
+                  "duration": 120,
+                  "leaf": true,
+                  "items": [
+
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

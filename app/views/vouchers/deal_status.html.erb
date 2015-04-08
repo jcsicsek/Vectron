@@ -1,0 +1,37 @@
+<div id="content">
+	<div class="fr"><%= link_to "Print", "/print/dashboard/" + @voucher.id.to_s, {:class=>'button btn_launch', :target => '_blank'} %></div>
+	<div class="fr mr10"><a href="javascript:history.go(-1)" class="button btn_launch"><< Back</a></div>
+	<p><strong>Event Name</strong>:  <%= @voucher.name %></p>
+	<p><strong>Event Date</strong>: <%= @voucher.format_event_date %></p>
+	<div class="metrics"><p class="metrics-title">Tickets Sold: <p class="metrics-kpi"><%= @voucher.purchase_count.to_i %></p></p></div>
+	<div class="metrics"><p class="metrics-title">Remaining Tickets: <p class="metrics-kpi"><%= @voucher.number_remaining.to_i %></p></p></div>
+	<div class="metrics"><p class="metrics-title">Ticket Revenue: <p class="metrics-kpi"><%= @voucher.print_revenue %></p></p></div>
+	<div class="metrics"><p class="metrics-title">Commission Paid: <p class="metrics-kpi"><%= @voucher.print_commission %></p></p></div>
+	
+	<table class="tablesorter sort"> 
+	    <thead> 
+	            <tr> 
+			<th></th>
+			<th>Ticket ID</th>
+			<th>Qty</th>
+			<th>Last Name</th> 
+			<th>First Name</th> 
+			<th>Payment Info</th> 
+			<th>Date/Time Purchased</th> 
+	            </tr> 
+	    </thead> 
+	    <tbody> 
+	        <% @voucher.voucher_offers.each_with_index do |voucher_offer, index| %>
+	            <tr>
+			<td><%= index + 1 %>
+			<td><%= voucher_offer.ticket_id %></td>
+			<td><%= voucher_offer.quantity %>
+	                <td><%= voucher_offer.user.last_name %></td> 
+	                <td><%= voucher_offer.user.first_name %></td> 
+	                <td><%= voucher_offer.print_payment_info %></td> 
+	                <td><%= voucher_offer.print_date_added %></td> 
+	            </tr>
+	        <% end %>
+	    </tbody> 
+	</table>
+</div>

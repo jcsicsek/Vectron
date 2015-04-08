@@ -1,0 +1,103 @@
+<div id="content">
+	<div class="panel clearfix">
+	<div style="float:right;"><a href="javascript:history.go(-1)" class="btn medium"><< Back</a></div>
+		<h1>Add or Modify An Event</h1>
+		<div>
+			<%= form_for(@voucher, :validate => true, :url => voucher_update_path, :html => { :multipart => true }) do |f| %>
+			<%= f.hidden_field :id %>
+			<%= f.hidden_field :event_template_id %>
+			<% if @locations.count <= 1 %>
+				<%= f.hidden_field :venue_id %>
+			<% else %>
+			<div class="row">
+				<%= f.label :venue, "Venue Location:" %>
+				<%= f.collection_select(:venue_id, @locations, :id, :name, {}, {:id=>'venue', :size=>'30'}) %>
+			</div>
+			<% end %>
+			<div class="row">
+				<%= f.label :event_type, "Event Type:" %>
+				<%= f.collection_select(:event_type_id, EventType.all, :id, :name, {}, {:id=>'event_type', :size=>'30'}) %>
+			</div>
+			<div class="row">
+				<%= f.label :name, "Event/Show Name:" %>
+				<%= f.text_field :name, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/eventname.htm?width=225" class="jTip" id="tip-eventname" name="What is the event name">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :description, "Description:" %>
+				<%= f.text_area :description, {:class=>'ui-state-default', :size=>'70x6'} %>
+				<span class="formInfo"><a href="/tips/description.htm?width=225" class="jTip" id="tip-description" name="What is the description for the event?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :details, "Additional Details (cast and crew, artists, etc.):" %>
+				<%= f.text_area :details, {:class=>'ui-state-default', :size=>'70x6'} %>
+				<span class="formInfo"><a href="/tips/details.htm?width=225" class="jTip" id="tip-details" name="What additional details would you like to share?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :terms, "Terms and Conditions:" %>
+				<%= f.text_area :terms, {:class=>'ui-state-default', :size=>'70x6'} %>
+				<span class="formInfo"><a href="/tips/terms.htm?width=225" class="jTip" id="tip-terms" name="What special terms do you have?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :photo, "Event Photo (from file):" %>  
+				<%= f.file_field :photo, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/photofile.htm?width=225" class="jTip" id="tip-photofile" name="Would you like to upload an image?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :photo_url, "Event Photo (from URL):" %>  
+				<%= f.text_field :photo_url, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/photourl.htm?width=225" class="jTip" id="tip-photourl" name="Do you have an image hosted?">?</a></span>
+			</div>
+			<div class="row">
+				<%= label_tag 'current_photo', "Current Event Photo:" %>
+				<% if (@voucher.get_photo_url.empty?) %>
+				  <span>None selected, choose one above.</span>
+				<% else %>
+				  <%= image_tag(@voucher.get_photo_url, {:width => "100", :height=> "auto", :title => @voucher.name, :alt => @voucher.name}) %>
+				<% end %>
+			</div>
+			<div class="row">
+				<%= f.label :date_only, "Event Date:" %>
+				<%= f.text_field :date_only, {:class=>'ui-state-default', :id => 'event_cal'} %>
+				<span class="formInfo"><a href="/tips/eventdate.htm?width=225" class="jTip" id="tip-eventdate" name="What is the event date?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :time_only, "Event Time:" %>
+				<%= f.text_field :time_only, {:class=>'ui-state-default', :id => 'event_time'} %>
+				<span class="formInfo"><a href="/tips/eventtimefrom.htm?width=225" class="jTip" id="tip-eventtimefrom" name="What time is the event?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :ticket_cutoff, "Ticket Cut-Off (minutes before showtime):" %>
+				<%= f.text_field :ticket_cutoff, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/cuttime.htm?width=225" class="jTip" id="tip-cuttime" name="What is the cut-off time for ticket sales?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :full_value_cents, "Normal Price:" %>
+				<%= f.text_field :full_value_cents, {:class=>'ui-state-default currency'} %>
+				<span class="formInfo"><a href="/tips/normalprice.htm?width=225" class="jTip" id="tip-normalprice" name="What is the normal price?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :launched, "Launch Deal?" %>
+				<%= f.check_box :launched, {:class=>'ui-state-default launch-checkbox'} %>
+			</div>			
+			<div id="launch-options" style="display: none;">
+			<div class="row">
+				<%= f.label :voucher_price_cents, "Deal Price:" %>
+				<%= f.text_field :voucher_price_cents, {:class=>'ui-state-default currency'} %>
+				<span class="formInfo"><a href="/tips/dealprice.htm?width=225" class="jTip" id="tip-dealprice" name="What is the deal price?">?</a></span>
+			</div>
+			<div class="row">
+				<%= f.label :max_offers, "Seats Available:" %>
+				<%= f.text_field :max_offers, {:class=>'ui-state-default'} %>
+				<span class="formInfo"><a href="/tips/seatsavailable.htm?width=225" class="jTip" id="tip-seatsavailable" name="What does seats available mean?">?</a></span>
+			</div>
+			</div>
+			<div class="row">
+				<%= f.submit 'Save', :class => 'btn primary large save' %>
+			</div>
+		<% end %>	
+		</div><!--end form-->
+    
+	</div><!--end #panel clearfix-->
+</div><!--end #content-->
+

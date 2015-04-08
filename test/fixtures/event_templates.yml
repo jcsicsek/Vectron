@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  business_id: 1
+  event_type_id: 1
+  name: MyString
+  event_time: 2011-08-20 22:39:18
+  full_value_cents: 1
+  active: false
+  description: MyText
+  details: MyText
+  terms: MyText
+  external_id: 1
+  genre: MyString
+  photo_remote_url: MyString
+
+two:
+  business_id: 1
+  event_type_id: 1
+  name: MyString
+  event_time: 2011-08-20 22:39:18
+  full_value_cents: 1
+  active: false
+  description: MyText
+  details: MyText
+  terms: MyText
+  external_id: 1
+  genre: MyString
+  photo_remote_url: MyString

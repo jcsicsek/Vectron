@@ -1,0 +1,367 @@
+
+<div id="account">
+    <div id="tabs">
+      <ul>
+	<li><a href="#mypurchases">My Purchases</a></li>
+	<li><a href="#myaccount">My Account</a></li>
+	<li><a href="#myprofile">My Profile</a></li>
+	<!--<li><a href="#myfavorites">My Favorites</a></li>-->
+	<span class="fr"><%= @balance_info %></span>
+      </ul>
+      <div id="mypurchases">
+	<div id="subtabs">
+	  <ul>
+	    <li><a href="#upcoming">Upcoming Events</a></li>
+	    <li><a href="#past">Past Events</a></li>
+	  </ul>
+	  <div id="upcoming">
+	    <table id="upcoming_events" class="tablesorter sort"> 
+		<thead> 
+		    <tr> 
+			<th style="width:7%;"></th>
+			<th style="width:34%;">Name</th>
+			<th style="width:5%;">Qty</th>
+			<th style="width:12%;">Purchase Date</th>
+			<th style="width:27%;">Event Date</th> 
+			<th style="width:8%;">Price</th>
+			<th style="width:7%;">Print</th>
+		    </tr> 
+		</thead> 
+		<tbody>
+		    <% @active_voucher_offers.each do |voucher_offer| %>
+			<tr> 
+				<td><%= link_to image_tag(voucher_offer.voucher.get_photo_url, {:width => "100", :height=> "auto", :title => voucher_offer.voucher.name, :alt => voucher_offer.voucher.name}), "/deal/" + voucher_offer.voucher.id.to_s %></td>
+			    <td><%= link_to voucher_offer.voucher.format_tagline, "/deal/" + voucher_offer.voucher.id.to_s %></td> 
+				<td><%= voucher_offer.quantity %>
+			    <td><%= voucher_offer.format_purchase_date %></td> 
+			    <td><%= voucher_offer.voucher.format_event_date %></td> 
+			    <td><%= voucher_offer.format_discount_price %></td>
+				<td><%= link_to "Print", "/print/" + voucher_offer.id.to_s, {:class=>'btn primary small', :target => '_blank'} %></td>
+			</tr>
+		    <% end %>
+		</tbody> 
+            </table>
+	  </div>
+	  <div id="past">
+	    <table id="past_events" class="tablesorter sort"> 
+		<thead> 
+		    <tr> 
+			<th style="width:7%;"></th>
+			<th style="width:34%;">Name</th>
+			<th style="width:5%;">Qty</th>
+			<th style="width:12%;">Purchase Date</th>
+			<th style="width:27%;">Event Date</th> 
+			<th style="width:8%;">Price</th>
+			<th style="width:7%;">Print</th>
+		    </tr> 
+		</thead> 
+		<tbody> 
+		    <% @past_voucher_offers.each do |voucher_offer| %>
+			    <tr> 
+				<td><%= link_to image_tag(voucher_offer.voucher.get_photo_url, {:width => "100", :height=> "auto", :title => voucher_offer.voucher.name, :alt => voucher_offer.voucher.name}), "/deal/" + voucher_offer.voucher.id.to_s %></td>
+				<td><%= link_to voucher_offer.voucher.format_tagline, "/deal/" + voucher_offer.voucher.id.to_s %></td> 
+				<td><%= voucher_offer.quantity %>
+				<td><%= voucher_offer.format_purchase_date %></td> 
+				<td><%= voucher_offer.voucher.format_event_date %></td> 
+				<td><%= voucher_offer.format_discount_price %></td>
+				<td><%= link_to "Print", "/print/" + voucher_offer.id.to_s, {:class=>'btn primary small', :target => '_blank'} %></td>
+			    </tr>
+		    <% end %>
+		</tbody> 
+            </table>
+	  </div>
+	</div>
+      </div>
+      <div id="myaccount">
+	<div id="subtabs">
+	  <ul>
+	    <li><a href="#account-info">Account Info</a></li>
+	    <li><a href="#payment-methods">Payment Methods</a></li>
+	    <li><a href="#change-password">Change Password</a></li>
+	  </ul>
+	  <div id="account-info">
+	    <%= form_for(@user, :as => "user_info", :validate => true, :url => user_update_path) do |f| %>
+                <div class="row">
+                     <%= f.label :first_name, "First Name:" %>
+                     <%= f.text_field :first_name, {:class=>'ui-state-default'} %>
+                 </div>
+                 <div class="row">
+                     <%= f.label :last_name, "Last Name:" %>
+                     <%= f.text_field :last_name, {:class=>'ui-state-default'} %>
+                 </div>
+                 <div class="row">
+                     <%= f.label :email, "Email Address:" %>
+                     <%= f.text_field :email, {:class=>'ui-state-default'} %>
+                 </div>
+                 <div class="row">
+                     <%= f.submit 'Save', :class => 'btn primary medium save' %>
+                 </div>
+				<% end %>
+	  </div>
+	  <div id="change-password">
+	    <%= form_for(@user, :as => "user", :validate => true, :url => user_change_password_path) do |f| %>
+                <div class="row">
+		    <%= f.label :current_password, "Current Password:" %>
+		    <%= f.password_field :current_password, {:class=>'ui-state-default'} %>
+		</div>
+                 <div class="row">
+                     <%= f.label :password, "New Password:" %>
+                     <%= f.password_field :password, {:class=>'ui-state-default', :validate => true} %>
+                 </div>
+                 <div class="row">
+                     <%= f.label :password_confirmation, "New Password Confirmation:" %>
+                     <%= f.password_field :password_confirmation, {:class=>'ui-state-default'} %>
+                 </div>
+                 <div class="row">
+                     <%= f.submit 'Save', :class => 'btn primary medium save' %>
+                 </div>
+             <% end %>
+	  </div>
+	  <div id="payment-methods">
+	    <h3>How Would You Like to Pay?</h3>
+                <div class="row">
+                    <select id="venue_payment" class="ui-state-default" name="venue_payment">
+                        <option value="0">Please Choose...</option>
+                        <option value="1">Credit Card</option>
+                        <!--option value="2">Paypal</option-->
+                    </select>
+                </div>
+                <div id="pay1" class="box">
+                    <%= form_for(@credit_card, :validate => true, :url => create_payment_profile_path) do |f| %>
+						<div class="row">
+						    <%= f.label :first_name, "First Name:" %>
+						    <%= f.text_field :first_name, {:class=>'ui-state-default'} %>
+						</div>
+                        <div class="row">
+                            <%= f.label :last_name, "Last Name:" %>
+                            <%= f.text_field :last_name, {:class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :card_number, "Card Number:" %>
+                            <%= f.text_field :card_number, {:class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :card_type, "Card Type (Visa, MasterCard, etc.):" %>
+                            <%= f.collection_select(:card_type, CreditCardType.all, :name, :display_name, {}, {}) %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :security_code, "Security Code:" %>
+                            <%= f.text_field :security_code, {:class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :expiry_month, "Expiration Date Month (MM):" %>
+                            <%= f.text_field :expiry_month, {:class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :expiry_year, "Expiration Date Year (YYYY):" %>
+                            <%= f.text_field :expiry_year, {:class=>'ui-state-default'} %>
+                        </div>
+<% if false %>
+                        <div class="row">
+                            <%= f.label :address, "Address:" %>
+                            <%= f.text_field :address, {:class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :city, "City:" %>
+                            <%= f.text_field :city, {:class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :state, "State:" %>
+                            <%= f.state_select(:state) %>
+                        </div>
+                        <div class="row">
+                            <%= f.label :phone, "Phone Number:" %>
+                            <%= f.text_field :phone, {:class=>'ui-state-default'} %>
+                        </div>
+<% end %>
+                        <div class="row">
+                            <%= f.label :zip, "Zip Code:" %>
+                            <%= f.text_field :zip, {:class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.submit 'Save', :class => 'btn primary medium save mb10' %>
+                        </div>
+                    <% end %>
+                </div><!--end #pay1-->
+                <div id="pay2" class="box">
+                    <% form_for("dog", :url => "Blah", :html => { :method => :put }) do |f| %>
+                        <div class="row">
+                            <%= f.label :paypal_username, "Paypal Username:" %><br />
+                            <%= f.text_field :paypal_username, {:class=>'edit', :class=>'ui-state-default'} %>
+                        </div>
+                        <div class="row">
+                            <%= f.submit 'Save', :class => 'btn primary medium save mb10' %>
+                        </div>
+                    <% end %>
+                </div><!--end #pay2-->
+            <table id="saved_user_payments" class="tablesorter sort"> 
+                <thead> 
+                    <tr> 
+                        <th>Default</th> 
+                        <th>Payment Type</th> 
+                        <th>Account Details</th> 
+                        <th>Date Added</th>
+			<th>Delete</th>
+                    </tr> 
+                </thead> 
+                <tbody> 
+			<% current_user.payment_profiles.each do |payment_profile| %>
+		    <tr>
+			<% if (current_user.is_default_payment_profile?(payment_profile.id)) %>
+			<td><span style="padding:5px;"><strong>Current Default</strong></span></td> 
+			<% else %>
+			<td><%= link_to "Set as Default", user_set_default_payment_path(:payment_profile_id => payment_profile.id), {:class=>'btn small'}%></td>
+			<% end %>
+			<td>Credit Card</td> 
+			<td><%= payment_profile.get_cc_number %></td> 
+			<td><%= payment_profile.print_date_added %></td> 
+			<td><%= link_to "Delete", delete_payment_profile_path(:payment_profile_id => payment_profile.id), {:class=>'btn danger small'} %>
+		    </tr>
+			<% end %>
+                </tbody> 
+            </table>
+	  </div>
+	</div>
+      </div>
+      <div id="myprofile">
+	<%= form_for(@user, :url => user_update_path) do |f| %>
+	    <div class="mt20">
+		<div class="city">
+		  <label id="city-label" class="mt10" for="city">City:</label>
+		  <input id="city-input" name="city" type="text" size="25" value="" />
+		</div>
+		<div class="zip">
+                    <%= f.label :zip_code, "Zip Code:", {:id=>"zip-label", :class=>"mt10"} %>
+                    <%= f.text_field :zip_code, {:id=>"zip-input", :class=>'ui-state-default'} %>
+		</div>
+	      </div>
+	      <div class="clear"></div>
+	      
+	      <h3 class="mt20">What days or nights do you want to go out?</h3>
+		<div id="preferences-form" class="d1">
+		  <label id="d1-label" for="monday">Monday</label>
+		  <input id="monday" name="monday" type="checkbox" value="1" />
+		  <label id="d1-label" for="tuesday">Tuesday</label>
+		  <input id="tuesday" name="tuesday" type="checkbox" value="2" />
+		</div>
+		<div id="preferences-form" class="d2">
+		  <label id="d2-label" for="wednesday">Wednesday</label>
+		  <input id="wednesday" name="wednesday" type="checkbox" value="3" />
+		  <br>
+		  <label id="d2-label" for="thursday">Thursday</label>
+		  <input id="thursday" name="thursday" type="checkbox" value="4" />
+		</div>
+		<div id="preferences-form" class="d3">
+		  <label id="d3-label" for="friday">Friday</label>
+		  <input id="friday" name="friday" type="checkbox" value="5" />
+		  <label id="d3-label" for="saturday">Saturday</label>
+		  <input id="saturday" name="saturday" type="checkbox" value="6" />
+		</div>
+		<div id="preferences-form" class="d4">
+		  <label id="d4-label" for="sunday">Sunday</label>
+		  <input id="sunday" name="sunday" type="checkbox" value="7" />
+		</div>
+	      <div class="clear"></div>
+	      <h3 class="mt20">What types of events interest you?</h3>
+		<div id="preferences-form" class="t1">
+		  <label id="t1-label" for="theater">Theater</label>
+		  <input id="theater" name="theater" type="checkbox" value="1" />
+		  <label id="t1-label" for="comedy">Comedy</label>
+		  <input id="comedy" name="comedy" type="checkbox" value="1" />
+		</div>
+		<div id="preferences-form" class="t2">
+		  <label id="t2-label" for="music">Music</label>
+		  <input id="music" name="music" type="checkbox" value="1" />
+		  <label id="t2-label" for="movies">Movies</label>
+		  <input id="movies" name="movies" type="checkbox" value="1" />
+		</div>
+		<div id="preferences-form" class="t3">
+		  <label id="t3-label" for="sports">Sports</label>
+		  <input id="sports" name="sports" type="checkbox" value="1" />
+		  <label id="t3-label" for="surprises">Surprises</label>
+		  <input id="surprises" name="surprises" type="checkbox" value="1" />
+		</div>
+		<div class="clear"></div>
+<% if false %>
+            <div class="row">
+                    <%= f.label :user_category_interest, "Rank Categories by Interest:" %>
+                    <ul id="sortable">
+                            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Cat 1</li>
+                            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>LOOP FOR EVENT TYPES</li>
+                    </ul>
+            </div>
+            <div class="row">
+                    <%= f.label :genres, "Genres:" %>
+                    <select id="user_genres" class="user_genres" name="user_genres" multiple="multiple">
+                    <optgroup label="Category 1">
+                            <option value="2">LOOP FOR GENRES</option>
+                    </optgroup>
+                    <optgroup label="LOOP FOR EVENT TYPES">
+                            <option value="2">LOOP FOR GENRES</option>
+                    </optgroup>
+                    </select>
+            </div>
+<% end %>
+	    <h3 class="mt20">Demographics</h3>
+	    <p><em>This is all optional, but helps us get more venues onboard since we can help them understand their customers!</em></p>
+            <div class="row">
+                    <%= f.label :gender_id, "Gender:" %>
+                    <%= f.collection_select(:gender_id, Gender.all, :id, :name, {}, {:id=>'user_gender'}) %>
+            </div>
+	    <div class="row">
+                    <%= f.label :birthday, "Birthday:" %>
+                    <%= f.text_field :birthday, {:id =>'birthday_cal',:class=>'ui-state-default'} %>
+            </div>
+	    <div class="row">
+                    <%= f.label :education_id, "Education:" %>
+                    <%= f.collection_select(:education_id, Education.all, :id, :name, {}, {:id=>'user_education'}) %>
+                        <!-- Some high school, High school grad or equivalent, Trade or vocational, Some college, Associates degree, Bachelors degree, Professional degree, Prefer not to share -->
+            </div>
+            <div class="row">
+                    <%= f.label :employment_id, "Employment:" %>
+                    <%= f.collection_select(:employment_id, Employment.all, :id, :name, {}, {:id=>'user_employment'}) %>
+                        <!-- Full-time, Part-time, Looking for work, Not looking for work, Retired, Student,Homemaker, Prefer not to share  -->
+            </div>
+            <div class="row">
+                    <%= f.label :income_id, "Income:" %>
+                    <%= f.collection_select(:income_id, Income.all, :id, :name, {}, {:id=>'user_income'}) %>
+                        <!-- Under $20k, $20k - 30k, $30k - 40k, $40k - 50k, $50k - 70k, $70k - 100k, $100k - 150k, Over $150k, Prefer not to share -->
+            </div>
+            <div class="row">
+                    <%= f.label :house_id, "Housing Status:" %>
+                    <%= f.collection_select(:house_id, House.all, :id, :name, {}, {:id=>'user_house'}) %>
+                        <!-- Yes, No, Prefer not to share  -->
+            </div>
+            <div class="row">
+                    <%= f.label :relationship_status_id, "Relationship Status:" %>
+                    <%= f.collection_select(:relationship_status_id, RelationshipStatus.all, :id, :name, {}, {:id=>'user_relationship'}) %>
+                        <!-- Single, Attached, Married, Separated, Divorced, Widowed, Prefer not to share  -->
+            </div>
+            <div class="row">
+                    <%= f.label :children_id, "Do You Have Children?" %>
+                    <%= f.collection_select(:children_id, Children.all, :id, :name, {}, {:id=>'user_children'}) %>
+                        <!-- Yes, No, Prefer not to share  -->
+            </div>
+            <div class="row">
+                    <%= f.submit 'Save', :class => 'btn primary medium save' %>
+            </div>
+        <% end %>
+      </div>
+      <!--<div id="myfavorites">
+        <ul class="followed_venues no_bullets">
+            <li class="followed_venue">
+              <div class="avatar">
+                <a href="/venues/ps122"><img width="100" height="auto" title="PS122" src="images/featured_pic.jpg" alt="PS122"></a>
+              </div>
+              <div class="details">
+                <h3><a href="/venues/ps122">PS122</a></h3>
+                <h4><strong>Theater</strong> - East Village</h4>
+              </div>
+              <form method="post" class="unfollow_venue follow_venue_form" action="/users/frank-fumarola/followed_venues/ps-122"><div style="margin:0;padding:0"><input type="hidden" value="delete" name="_method"><input type="hidden" value="#" name="authenticity_token"></div><input type="hidden" value="Follow" name="follow_button_text" id="follow_button_text"></button>
+              </form>
+            </li>
+            LOOP THE ABOVE FOR EACH FOLLOWED VENUE 
+        </ul>
+      </div>-->
+    </div>
+</div>

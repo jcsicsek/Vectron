@@ -1,0 +1,198 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+
+	function initialize_thumbs()
+	{
+		<% if user_signed_in? && @initial_thumbs %>
+			<% if (@initial_thumbs.up) %>
+				document.getElementById('thumbs-up-<%= @event.event_type_id %>').className = 'thumbs-up-selected';
+			<% elsif (@initial_thumbs.down) %>
+				document.getElementById('thumbs-down-<%= @event.event_type_id %>').className = 'thumbs-down-selected';
+			<% end %>
+		<% end %>
+	}
+
+	$(document).ready(function() {
+		initialize_thumbs();
+	});
+
+	function setCountdown(eventDate)
+	{
+		$(function () {
+			$('#<%= "deal-" + @event.event_type_id.to_s %>').countdown('destroy');
+		    $('#<%= "deal-" + @event.event_type_id.to_s %>').countdown({until: new Date(eventDate), format: 'HMS'});
+		});
+	}
+	
+	$(document).ready(function() {
+	  setCountdown('<%= @event.js_event_date %>')
+	});
+
+	function newPopup(url) {
+		popupWindow = window.open(
+			url,'popUpWindow','height=400,width=700,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+	}
+	
+	  function codeAddress(address) {
+	    geocoder.geocode( { 'address': address}, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	        map.setCenter(results[0].geometry.location);
+	        var marker = new google.maps.Marker({
+	            map: map, 
+	            position: results[0].geometry.location
+	        });
+	      } else {
+	        codeAddress("NYC");
+	      }
+	    });
+	  }
+	
+	var geocoder;
+	  var map;
+	  function initialize() {
+	    geocoder = new google.maps.Geocoder();
+	    var latlng = new google.maps.LatLng(-34.397, 150.644);
+	    var myOptions = {
+	      zoom: 13,
+	      center: latlng,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    }
+	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		codeAddress("<%= @gmaps_address %>");
+	  }
+	
+		var featuredId = <%= @event.id %>
+	
+		function swapFeatured(eventTypeId, eventId, eventTime, eventDescription, eventDetails, eventTitle, eventImageURL, voucherPrice, eventFullPrice, percentSavings, dollarSavings, terms)
+		{
+			if (eventId != featuredId)
+			{
+				document.getElementById('title').innerHTML = eventTitle;
+				document.getElementById('discount-price').innerHTML = voucherPrice;
+				document.getElementById('normal-price').innerHTML = eventFullPrice;
+				document.getElementById('percent-savings').innerHTML = percentSavings;
+				document.getElementById('dollar-savings').innerHTML = dollarSavings;
+				document.getElementById('featured-pic').src = eventImageURL;
+				document.getElementById('description').innerHTML = eventDescription;
+				document.getElementById('details').innerHTML = eventDetails;
+				document.getElementById('description-2').innerHTML = eventDescription;
+				document.getElementById('details-2').innerHTML = eventDetails;
+				document.getElementById('buy').href = '/checkout/' + eventId;
+				document.getElementById('terms').innerHTML = terms;
+				
+				setCountdown(eventTime);
+			
+				document.getElementById('view-' + eventId).src = '/images/viewing_deal.png';
+				document.getElementById('view-' + featuredId).src = '/images/view_deal.png';
+				featuredId = eventId;
+			}
+		}
+
+
+	
+</script>
+
+<body onload="initialize()">
+</body>
+
+<meta name="description" content="<%= @event.description %>" /> 
+       <article id="featured">
+            <div id="category"><%= @event.event_type.name %></div>
+            <h2 id="title"><%= @event.format_title.html_safe %></h2>
+            <div id="deals">
+                <span class="buy_ribbon">
+                    <p id="discount-price"><%= @event.format_discount_price %></p>
+                    <a id="buy" class="<%= @event.sold_out? ? "no_display" : "buy-image" %>" href=<%= "/checkout/" + @event.id.to_s %>></a>
+                </span>
+                <div id="deal-price">
+                    <dl><dt>Price</dt><dd id="normal-price"><%= @event.format_normal_price %></dd></dl>
+                    <dl><dt>Discount</dt><dd id="percent-savings"><%= @event.format_percent_savings %></dd></dl>
+                    <dl><dt>Savings</dt><dd id="dollar-savings"><%= @event.format_dollar_savings %></dd></dl>	
+                </div>
+                <div class="shareOn">
+			<p>Share on:</p>
+			<!-- link_to "Facebook", '/share_on_facebook/' + event.id.to_s, {:class => "icon16 icon16-facebook"} -->
+			<a class="icon16 icon16-facebook" id="facebook-share" href="" onclick="newPopup('<%= user_signed_in? ? @event.facebook_url(current_user.id) : @event.facebook_url %>'); return false;">Facebook</a>
+			<!-- link_to "Twitter", event.twitter_url, {:class => "icon16 icon16-twitter"} -->
+			<a class="icon16 icon16-twitter" id="twitter-share" href="" onclick="newPopup('<%= user_signed_in? ? escape_javascript(@event.twitter_url(current_user.id)) : escape_javascript(@event.twitter_url)  %>'); return false;">Twitter</a>
+		</div>
+                <div id=<%= "deal-" + @event.event_type.id.to_s %>></div> <!-- Countdown timer -->
+	    </div>
+		<div id="sold-out" class="fr ml220 <%= @event.sold_out? ? "featured_pic_sold_out" : "no_display" %>"><!-- no_display or featured_pic_sold_out --><span class="featured_pic_sold_out_text">Sold Out</span></div>
+		<%= image_tag @event.get_photo_url, {:id => "featured-pic", :class => "featured_pic", :alt => "featured picture"} %>
+		<div style="width:185px;" class="fl">
+			<div id="showtime">
+				<h4>Showtime</h4>
+				<p id="showtime-p"><%= @event.format_event_date %></p>
+			</div>
+			<div id="rate">
+			    <h4>Teach Buddy!</h4>
+				<%= link_to ("<span class='thumbs-up' id='thumbs-up-" + @event.event_type_id.to_s + "'></span>").html_safe, thumbs_up_path(:voucher_id => @event.id), :remote => true, :id => "thumbs-up-link" %>
+				<%= link_to ("<span class='thumbs-down' id='thumbs-down-" + @event.event_type_id.to_s + "'></span>").html_safe, thumbs_down_path(:voucher_id => @event.id), :remote => true, :id => "thumbs-down-link" %>
+				<div id ="no-user-rate-<%= @event.event_type_id.to_s %>" style="display:none;" class="rate-login"><%= link_to "Login", users_login_path %> or <%= link_to "signup", users_new_path %> to get personalized recommendations!</div>
+			</div>
+		</div>
+		<div class="featured_left">
+		    <h3>Synopsis</h3>
+		    <p id="description"><%= @event.truncated_description.html_safe %></p>
+		</div>
+		<div class="featured_right">
+		    <h3>Cast and Crew</h3>
+		    <p id="details"><%= @event.truncated_details.html_safe %></p>
+            </div>	
+        </article>
+           
+        <section id="sidebar">
+            <h4>Other <%= @event.business.name %> Tickets</h4>
+		<% @other_events.each do |event| %>
+		<% if (event.id == @event.id)
+			button_src = "/images/viewing_deal.png"
+		else
+			button_src = "/images/view_deal.png"
+		end %>
+		<% if false %>
+		<p><img id="view-<%= event.id %>" src="<%= button_src %>" onclick="swapFeatured(
+			'<%= event.event_type.id.to_s %>',
+			'<%= event.id.to_s %>',
+			'<%= event.js_event_date %>',
+			'<%= escape_javascript(event.description) %>',
+			'<%= escape_javascript(event.details) %>',
+			'<%= escape_javascript(event.format_title) %>',
+			'<%= event.get_photo_url %>',
+			'<%= event.format_discount_price %>',
+			'<%= event.format_normal_price %>',
+			'<%= event.format_percent_savings %>',
+			'<%= event.format_dollar_savings %>',
+			'<%= escape_javascript(event.terms) %>');" /><%= event.format_blurb.html_safe %></p>
+		<% end %>
+		<p><%= link_to image_tag(button_src, :id => "view-" + event.id.to_s), swap_individual_deal_path(:voucher_id => event.id), :remote => true, :onclick => "$('#LoadingDiv').show();" %>
+		<%= event.format_blurb.html_safe %></p>
+		<% end %>
+        </section>
+        
+        <article id="more">
+            <div id="category">Synopsis & Cast</div>
+            <h3>Synopsis</h3>
+		<p id="description-2"><%= @event.full_description.to_s.html_safe %></p>
+            <h3>Cast & Crew</h3>
+		<p id="details-2"><%= @event.full_details.to_s.html_safe %></p>
+            <div id="subcategory">History</div>
+            <h3>About the Venue</h3>
+		<p><%= @event.business.description.to_s.html_safe %></p>
+            <div id="subcategory">Terms</div>
+            <h3>Restrictions</h3>
+		<p id="terms"><%= @event.terms.to_s.html_safe %></p>
+         </article>
+         
+         <section id="sidebar">
+            <h4>Map</h4>
+		<div id="map_canvas" style="height:240px;width:240px"></div>
+            <h4>Reviews</h4>
+		<p>None yet</p>
+            <h4>Contact</h4>
+		<p><%= @event.venue.name %><br>
+		<%= @street_address %><br>
+		<%= @city_state_zip %><br>
+		<%= @event.venue.phone_number %></p>
+        </section>

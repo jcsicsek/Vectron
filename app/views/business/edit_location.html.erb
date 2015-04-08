@@ -1,0 +1,48 @@
+<div id="content">
+	<div class="panel clearfix">
+	<div style="float:right;"><a href="javascript:history.go(-1)" class="btn medium"><< Back</a></div>
+		<h1>Add or Modify A Location</h1>
+		<div>
+		<% form_for(@location, :validate => true, :url => location_save_path, :html => { :method => :put, :class => "edit_venue" }) do |f| %>
+			<%= f.hidden_field :id %>
+			<div class="row">
+				<%= f.label :name, "Location Name:" %>
+				<%= f.text_field :name, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :street_address, "Address 1:" %>
+				<%= f.text_field :street_address, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :street_address_2, "Address 2:" %>
+				<%= f.text_field :street_address_2, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :city_address, "City:" %>
+				<%= f.text_field :city_address, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :neighborhood, "Neighborhood:" %>
+				<%= f.text_field :neighborhood, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :state, "State:" %>
+				<%= f.state_select(:state) %>
+			</div>
+			<div class="row">
+				<%= f.label :zip_code, "Zip Code:" %>
+				<%= f.text_field :zip_code, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :phone_number, "Phone Number:" %>
+				<%= f.text_field :phone_number, {:class=>'ui-state-default'} %>
+			</div>
+			<div>
+				<%= f.submit 'Save', :class => 'btn primary large save mt10' %> <span class="ml10"><%= link_to 'Save and Add Another Location', "#", :onclick=>"$('.edit_venue').submit()", :id=>'save-text', :class=>'ml10' %>
+			</div>
+		<% end %>	
+		</div><!--end form-->
+    
+	</div><!--end #panel clearfix-->
+</div><!--end #content-->
+

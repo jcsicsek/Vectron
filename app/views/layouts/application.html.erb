@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title><%= @title %></title>
+	<%= render 'layouts/stylesheets' %>
+	<%= render 'layouts/javascripts' %>
+	<meta property="og:title" content="UsherBuddy | Last-Minute Ticket Deals" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.usherbuddy.com" />
+	<meta property="og:image" content="http://www.usherbuddy.com/images/buddy.png" />
+	<meta property="og:site_name" content="UsherBuddy" />
+	<meta property="fb:app_id" content="106592586107111" />
+</head>
+<body id="single" onload="$('#preferences').trigger('click');">
+	<a id="preferences" href="/preferences/" title="Your Preferences" class="iframe"></a>
+	<%= render 'layouts/header' %>
+		<% flash.each do |name, msg| %>
+		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end %>
+	<%= yield %>
+	<%= render 'layouts/footer' %>
+</body>
+
+</html>

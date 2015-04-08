@@ -1,0 +1,5 @@
+<p>Welcome <%= @resource.email %>!</p>
+
+<p>Welcome to UsherBuddy!  Please click on the link below to confirm your account:</p>
+
+<p><%= link_to 'Confirm my UsherBuddy account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

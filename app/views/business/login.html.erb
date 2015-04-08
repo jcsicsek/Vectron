@@ -1,0 +1,28 @@
+<div id="content">
+	<div class="panel clearfix">
+		<h1>Business Login</h1>
+		<h2 class="signup">Login <span class="login-span"> or <%= link_to "signup", business_new_path, {:class=>'login-a'} %></span></h2>
+		<div>
+		<%= form_for("business", :url => business_session_path) do |f| %>
+			<div class="row">
+				<%= f.label :login, "Email Address" %><br />
+				<%= f.text_field :login, {:class=>'ui-state-default'} %>
+			</div>
+			<div class="row">
+				<%= f.label :password, "Password" %><br />
+				<%= f.password_field :password, {:class=>'ui-state-default'} %><br />
+			</div>
+			<div class="row">
+				<%= f.label :remember_me, "Remember Me" %>
+				<%= f.check_box :remember_me, {:class=>'remember_me'} %><br />
+			</div>
+			<div class="row">
+				<%= f.submit 'Sign in', :class => 'btn primary large signup' %>
+			</div>
+			<div class="row">
+				<%= link_to 'Forgot password?', new_business_password_path %>
+			</div>
+		<% end %>
+                </div><!--end form for business-->
+        </div><!--end .panel .clearfix-->
+</div><!--end #content-->

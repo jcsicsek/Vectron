@@ -1,0 +1,575 @@
+<div id="account">
+	<div id="tabs">
+		<ul>
+			<li><a href="#myvenue">My Venue</a></li>
+			<li><a href="#myevents">My Events</a></li>
+			<li><a href="#myoffers">My Offers</a></li>
+				<!--<li><a href="#">My Deal Templates</a></li>-->
+			<li><a href="#mypayment">My Payment</a></li>
+			<!--<li><a href="#">My Analytics</a></li>-->
+		</ul>
+			<div id="myvenue">
+				<div id="subtabs">
+					<ul>
+						<li><a href="#venue-info">Venue Info</a></li>
+						<li><a href="#contact-info">Contact Info</a></li>
+						<li><a href="#location-info">Location Info</a></li>
+						<li><a href="#change-password">Change Password</a></li>
+					</ul>
+				<div id="venue-info">
+					<% form_for(@business, :validate => true, :url => business_update_path, :html => { :multipart => true }) do |f| %>
+						<div class="row">
+							<%= f.label :name, "Venue Name:" %>
+							<%= f.text_field :name, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :description, "Venue Description:" %>
+							<%= f.text_area :description, {:class=>'ui-state-default', :size=>'90x5'} %>
+						</div>
+						<div class="row">
+							<%= f.label :city_id, "Deal City:" %>
+							<%= f.collection_select(:city_id, City.all, :id, :name, {}, {:id=>'venue_deal_city', :size=>'30'}) %>
+						</div>
+						<div class="row">
+							<%= f.label :event_types, "Venue Categories:" %>
+							<%= select_tag("business_event_types[]", options_for_select(@event_types.collect { |ff| [ff.name, ff.id] }, @business.event_types.collect { |fs| fs.id }), {:multiple=>true, :id => "venue_categories", :size => '30'}) %>
+						</div>
+						<div class="row">
+							<%= f.label :venue_amenities, "Venue Amenities:" %>
+							<%= select_tag("business_amenities[]", options_for_select(@amenities.collect { |ff| [ff.name, ff.id] }, @business.amenities.collect { |fs| fs.id }), {:multiple=>true, :id => "venue_amenities", :size => '30'}) %>
+						</div>
+						<div class="row">
+							<%= f.label :ticket_cutoff, "Default Ticket Cut-Off (minutes before showtime):" %>
+							<%= f.text_field :ticket_cutoff, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :photo, "Default Photo (from file):" %>  
+							<%= f.file_field :photo, {:class=>'ui-state-default bus_photo_up'} %>
+						</div>
+						<div class="row">
+							<%= f.label :photo_url, "Default Photo (from URL):" %>  
+							<%= f.text_field :photo_url, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= label_tag 'current_photo', "Current Default Photo:" %>
+							<% if (@business.get_photo_url.empty?) %>
+							  <span>None selected, choose one above.</span>
+							<% else %>
+							  <%= image_tag(@business.get_photo_url, {:width => "100", :height=> "auto", :title => @business.name, :alt => @business.name}) %>
+							<% end %>
+						</div>
+						<div>
+							<%= f.submit 'Save', :class => 'btn primary large save mt10' %>
+						</div>
+					<% end %>   
+				</div>
+				<div id="contact-info">
+					<% form_for(@business, :validate => true, :url => business_update_path, :html => { :multipart => true }) do |f| %>
+						<div class="row">
+							<%= f.label :first_name, "First Name:" %>
+							<%= f.text_field :first_name, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :last_name, "Last Name:" %>
+							<%= f.text_field :last_name, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :email, "Email Address:" %>
+							<%= f.text_field :email, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :phone_number, "Phone Number:" %>
+							<%= f.text_field :phone_number, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :website_url, "Website URL:" %>
+							<%= f.text_field :website_url, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :twitter_handle, "Twitter Handle:" %>
+							@<%= f.text_field :twitter_handle, {:class=>'ui-state-default',:style => 'margin-left:5px;width:270px;'}  %>
+						</div>
+						<div class="row">
+							<%= f.label :facebook_url, "Facebook Link:" %>
+							<%= f.text_field :facebook_url, {:class=>'ui-state-default'} %>
+						</div>
+						<div>
+							<%= f.submit 'Save', :class => 'btn primary large save mt10' %>
+						</div>
+					<% end %>
+				</div>
+				<div id="location-info">
+				  <% if (@location_list.count <= 1) %> 
+					<% form_for(@first_location, :validate => true, :url => business_update_path, :html => { :method => :put }) do |f| %>
+						<div class="row">
+							<%= f.label :name, "Location Name:" %>
+							<%= f.text_field :name, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :street_address, "Address 1:" %>
+							<%= f.text_field :street_address, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :street_address_2, "Address 2:" %>
+							<%= f.text_field :street_address_2, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :city_address, "City:" %>
+							<%= f.text_field :city_address, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :neighborhood, "Neighborhood:" %>
+							<%= f.text_field :neighborhood, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :state, "State:" %>
+							<%= f.state_select(:state) %>
+						</div>
+						<div class="row">
+							<%= f.label :zip_code, "Zip Code:" %>
+							<%= f.text_field :zip_code, {:class=>'ui-state-default'} %>
+						</div>
+						<div class="row">
+							<%= f.label :phone_number, "Phone Number:" %>
+							<%= f.text_field :phone_number, {:class=>'ui-state-default'} %>
+						</div>
+						<div>
+							<%= f.submit 'Save', :class => 'btn primary large save mt10' %> <span class="ml10"><%= link_to 'Save and Add Another Location', "#", :onclick=>"$('.edit_venue').submit()", :id=>'save-text', :class=>'ml10' %>
+							 
+						</div>
+					<% end %>
+				  <% else %>
+					<div id="multiple_locations"> 
+					  <span class="fr"><%= link_to 'Add Location', location_edit_path, {:class => 'btn primary medium'} %></span>
+					  <div class="clear"></div>
+					  <table id="bus_mult_locations" class="tablesorter"> 
+						  <thead> 
+							<tr> 
+							  <th style="width:15%;">Name</th>
+							  <th style="width:50%">Address</th>
+							  <th style="width:20%;">Phone Number</th> 
+							  <th style="width:15%;">Modify</th>
+							</tr> 
+						  </thead> 
+						  <tbody>
+							  <% @location_list.each do |location| %>
+							  <tr> 
+								<td><%= location.name.to_s %></td>
+								<td><%= location.address_for_list %></td> 
+								<td><%= location.phone_number.to_s %></td>
+								<td><%= link_to "Edit", location_edit_path(:id => location.id), {:class =>'btn small info mb10 mr10'} %> <%= link_to "Delete", location_delete_path(:id => location.id), {:class =>'btn danger small'} %></td>
+							  </tr>
+							<% end %>
+						  </tbody> 
+					  </table> 
+					  <span class="fr"><%= link_to 'Add Location', location_edit_path, {:class => 'btn primary medium'} %></span>
+					</div>
+				  <% end %>
+				</div>
+				<div id="change-password">
+					<%= form_for(@business, :validate => true, :as => "business_password", :url => business_change_password_path, :html => { :method => :put }) do |f| %>
+						<div class="row">
+							<%= f.label :current_password, "Current Password:" %>
+							<%= f.password_field :current_password, {:class=>'ui-state-default', :validate => true} %>
+						</div>
+						<div class="row">
+							<%= f.label :password, "New Password:" %>
+							<%= f.password_field :password, {:class=>'ui-state-default', :validate => true} %>
+						</div>
+						<div class="row">
+							<%= f.label :password_confirmation, "New Password Confirmation:" %>
+							<%= f.password_field :password_confirmation, {:class=>'ui-state-default', :validate => true} %>
+						</div>
+						<div class="row">
+							<%= f.submit 'Save', :class => 'btn primary large save mt10' %>
+						</div>
+					<% end %>
+				</div>
+				</div>
+			</div>
+			<div id="myevents">
+			  <div id="subtabs">
+				  <ul>
+					  <li><a href="#upcoming">Upcoming Events</a></li>
+					  <li><a href="#past">Past Events</a></li>
+				  </ul>
+					<div id="upcoming"> 
+					  <span class="fr"><%= link_to 'Add Single Event', '/event/new', {:class => 'btn primary medium', :id => 'single_event_button'} %><%= link_to 'Add Recurring Event', '/template/new', {:class => 'btn primary medium', :id => 'recurring_event_button'} %></span>
+					  <table id="my_upcoming_events" class="tablesorter sort-business-events"> 
+						  <thead> 
+							  <tr> 
+								  <th style="width:6%;"></th>
+								  <th style="width:15%">Image</th>
+								  <th style="width:14%;">Event Name</th> 
+								  <th style="width:41%;">Short Description</th> 
+								  <th style="width:6%;">Price</th>
+								  <th class="dateCol" style="width:9%;">Run Date</th>
+								  <th class="sortHeader no_display">Hidden</th>
+								  <th style="width:9%;">Launch Event</th>
+							  </tr> 
+						  </thead> 
+						  <tbody> 
+							<tr class="no_display"><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+							  <% @upcoming_event_templates.each do |template| %>
+								<tr> 
+									<td><%= link_to "Edit", "/template/" + template.id.to_s, {:class =>'btn small info mb10'} %> 
+										<%= link_to "Delete", template_delete_path(:id => template.id), {:class =>'btn danger small'} %></td>
+									<td><%= image_tag(template.get_photo_url, {:width => "100", :height=> "auto", :title => template.name, :alt => template.name}) %></td>
+									<td><%= template.name %></td> 
+									<td><%= template.truncated_description.html_safe %></td>
+									<td><%= template.format_normal_price %></td>
+									<td><%= template.format_date_range %></td> 
+									<td class="sortCol no_display"><%= template.sortable_date %></td>
+									<td><%= link_to "Launch", event_path(:id => "new", :event_template_id => template.id), {:class => 'btn info small'} %></td>
+								</tr>
+							  <% end %>
+								<% @upcoming_all_events.each do |event| %>
+									<tr> 
+										<td><%= link_to "Edit", "/event/" + event.id.to_s, {:class =>'btn info small mb10'} %>
+											<%= link_to "Delete", event_delete_path(:id => event.id), {:class =>'btn danger small'} %></td>
+										<td><%= image_tag(event.get_photo_url, {:width => "100", :height=> "auto", :title => event.name, :alt => event.name}) %></td>
+										<td><%= event.name %></td> 
+										<td><%= event.truncated_description.html_safe %></td> 
+										<% if (event.launched) %>
+											<td><span style="text-decoration: line-through;"><%= event.format_normal_price%></span><br><%= event.format_discount_price%></td>
+										<% else %>
+											<td><%= event.format_normal_price%></td>
+										<% end %>
+										<td><%= event.format_table_date %> <%= event.format_time_only %></td>
+										<td class="sortCol no_display"><%= event.sortable_date %></td>
+									<% if (event.launched) %>
+										<td><%= link_to "Status", "/deal/status/" + event.id.to_s, {:class => 'btn primary small'} %></td>
+									<% else %>
+										<td><%= link_to "Launch", "/event/" + event.id.to_s, {:class => 'btn info small'} %></td>
+									<% end %>
+									</tr>
+								<% end %>
+						  </tbody> 
+					  </table> 
+					  <span class="fr"><%= link_to 'Add Single Event', '/event/new', {:class => 'btn primary medium', :id => 'single_event_button'} %><%= link_to 'Add Recurring Event', '/template/new', {:class => 'btn primary medium', :id => 'recurring_event_button'} %></span>
+					</div>
+					<div id="past"> 
+					  <table id="my_past_events" class="tablesorter sort-business-events"> 
+						  <thead> 
+							  <tr> 
+								  <th style="width:6%;"></th>
+								  <th style="width:15%">Image</th>
+								  <th style="width:14%;">Event Name</th> 
+								  <th style="width:41%;">Short Description</th> 
+								  <th style="width:6%;">Price</th>
+								  <th class="dateCol" style="width:9%;">Run Date</th>
+								  <th class="sortHeader no_display">Hidden</th>
+								  <th style="width:9%;">Launch Event</th>
+							  </tr>
+						  </thead> 
+						  <tbody> 
+							<tr class="no_display"><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+							  <% @past_event_templates.each do |template| %>
+								<tr> 
+									<td><%= link_to "Edit", "/template/" + template.id.to_s, {:class =>'btn small info mb10'} %> or 
+										<%= link_to "Delete", template_delete_path(:id => template.id), {:class =>'btn danger small'} %></td>
+									<td><%= image_tag(template.get_photo_url, {:width => "100", :height=> "auto", :title => template.name, :alt => template.name}) %></td>
+									<td><%= template.name %></td> 
+									<td><%= template.truncated_description.html_safe %></td>
+									<td><%= template.format_normal_price %></td>
+									<td><%= template.format_date_range %></td>
+									<td class="sortCol no_display"><%= template.sortable_date %></td>
+									<td>Recurring Event Expired.</td>
+									<!-- We need to link to the template events aggregage page -->
+								</tr>
+							  <% end %>
+							<% @past_all_events.each do |event| %>
+								<tr> 
+									<td><%= link_to "View", "/event/" + event.id.to_s, {:class =>'btn small info mb10'} %>
+										<!-- link_to "Delete", event_delete_path(:id => event.id) --></td>
+									<td><%= image_tag(event.get_photo_url, {:width => "100", :height=> "auto", :title => event.name, :alt => event.name}) %></td>
+									<td><%= event.name %></td> 
+									<td><%= event.truncated_description.html_safe %></td> 
+									<td><%= event.format_normal_price %></td>
+									<td><%= event.format_table_date %> <%= event.format_time_only %></td> 
+									<td class="sortCol no_display"><%= event.sortable_date %></td>
+									<% if (event.launched) %>
+										<td><%= link_to "Results", "/deal/status/" + event.id.to_s, {:class => 'btn primary small'} %></td>
+									<% else %>
+										<td>No deal launched</td>
+									<% end %>
+								</tr>
+							<% end %>
+						  </tbody> 
+					  </table> 
+					</div>
+			  </div>
+			</div>
+			<div id="myoffers">
+				<div id="subtabs">
+					<ul>
+						<li><a href="#active">Active Offers</a></li>
+						<li><a href="#inactive">Inactive Offers</a></li>
+					</ul>
+				<div id="active">
+						<table id="active_offers" class="tablesorter sort"> 
+							<thead> 
+								<tr> 
+									<th style="width:6%;"></th>
+									<th style="width:15%">Image</th>
+									<th style="width:12%;">Show Name</th> 
+									<th style="width:35%;">Short Description</th> 
+									<th style="width:12%;">Date</th> 
+									<th style="width:6%;">Time</th> 
+									<th style="width:6%;">Price</th>
+									<th style="width:8%;">Status</th>
+								</tr> 
+							</thead> 
+							<tbody> 
+								<% @upcoming_launched_events.each do |event| %>
+									<tr> 
+										<td><%= link_to "Edit", "/event/" + event.id.to_s, {:class =>'btn small info mb10'} %>
+											<%= link_to "Delete", event_delete_path(:id => event.id), {:class =>'btn danger small'} %></td>
+										<td><%= image_tag(event.get_photo_url, {:width => "100", :height=> "auto", :title => event.name, :alt => event.name}) %></td>
+										<td><%= event.name %></td> 
+										<td><%= event.truncated_description.html_safe %></td> 
+										<td><%= event.format_table_date %></td> 
+										<td><%= event.format_time_only %></td>
+									<% if (event.launched) %>
+										<td><span style="text-decoration: line-through;"><%= event.format_normal_price%></span><br><%= event.format_discount_price%></td>
+									<% else %>
+										<td><%= event.format_normal_price%></td>
+									<% end %>
+									<% if (event.launched) %>
+										<td><%= link_to "Status", "/deal/status/" + event.id.to_s, {:class => 'btn primary small'} %></td>
+									<% else %>
+										<td><%= link_to "Launch", "/event/" + event.id.to_s, {:class => 'btn small info'} %></td>
+									<% end %>
+									</tr>
+								<% end %>
+							</tbody> 
+						</table> 
+				</div>
+				<div id="inactive">
+					<table id="inactive_offers" class="tablesorter sort"> 
+						<thead> 
+							<tr> 
+								<th style="width:6%;"></th>
+								<th style="width:15%">Image</th>
+								<th style="width:12%;">Show Name</th> 
+								<th style="width:35%;">Short Description</th> 
+								<th style="width:12%;">Date</th> 
+								<th style="width:6%;">Time</th> 
+								<th style="width:6%;">Price</th>
+								<th style="width:8%;">Deal Results</th>
+							</tr> 
+						</thead> 
+						<tbody> 
+							<% @past_launched_events.each do |event| %>
+								<tr> 
+									<td><%= link_to "View", "/event/" + event.id.to_s, {:class =>'btn small info'} %>
+										<!-- link_to "Delete", "/event/delete/" + event.id.to_s --></td>
+									<td><%= image_tag(event.get_photo_url, {:width => "100", :height=> "auto", :title => event.name, :alt => event.name}) %></td>
+									<td><%= event.name %></td> 
+									<td><%= event.truncated_description.html_safe %></td> 
+									<td><%= event.format_table_date %></td> 
+									<td><%= event.format_time_only %></td> 
+									<td><%= event.format_normal_price%></td>
+									<% if (event.launched) %>
+										<td><%= link_to "Results", "/deal/status/" + event.id.to_s, {:class => 'btn primary small'} %></td>
+									<% else %>
+										<td>No deal launched</td>
+									<% end %>
+								</tr>
+							<% end %>
+						</tbody> 
+					</table>
+				</div>
+				</div>
+			</div>
+			<!--<div id="mydealtemplates">
+			<span style="float:right;"><a class="button btn_launch" href="#">Add Template</a></span>
+					<table id="template_deals" class="tablesorter sort"> 
+						<thead> 
+							<tr> 
+								<th>Template Name</th> 
+								<th>Description</th> 
+								<th># of Tickets</th> 
+								<th>Time Frame</th> 
+								<th>Price</th>
+							</tr> 
+						</thead> 
+						<tbody> 
+							<tr> 
+								<td>Template #1</td> 
+								<td>Friday nights empty</td> 
+								<td>70</td> 
+								<td>18h</td> 
+								<td>$10</td>
+							</tr> 
+							<tr> 
+								<td>Template #2</td> 
+								<td>Friday nights 10</td> 
+								<td>10</td> 
+								<td>4h</td> 
+								<td>$20</td>
+							</tr> 
+						</tbody> 
+					</table> 
+				<span style="float:right;"><a class="button btn_launch" href="#">Add Template</a></span>
+			  </div>-->
+			<div id="mypayment">
+				<h3>How Would You Like to Receive Payment?</h3>
+					<div class="row">
+						<select id="venue_payment" class="ui-state-default" name="venue_payment" onchange="clearPaymentProfiles();">
+							<option value="0">Add new payment method...</option>
+							<option value="1">Direct Deposit</option>
+							<option value="2">Paper Check via USPS</option>
+							<option value="3">Paypal</option>
+						</select>
+					</div>
+					<div id="pay1" class="box toggle-1">
+						<%= form_for(@direct_deposit_profile, :validate => true, :url => direct_deposit_update_path) do |f| %>
+								<%= f.hidden_field :id %>
+							<div class="row">
+								<%= f.label :bank_name, "Bank Name:" %>
+								<%= f.text_field :bank_name, {:class=>'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.label :bank_account_type_id, "Account Type:" %>
+								<%= f.collection_select(:bank_account_type_id, BankAccountType.all, :id, :name, {}, {:id=>'venue_account_type'}) %>
+							</div>
+							<div class="row">
+								<%= f.label :account_number, "Account Number:" %>
+								<%= f.text_field :account_number, {:class=>'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.label :routing_number, "Routing Number:" %>
+								<%= f.text_field :routing_number, {:class=>'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.submit 'Save', :class => 'btn primary medium save mb10' %>
+							</div>
+						<% end %>
+					</div><!--end #pay1-->
+					<div id="pay2" class="box toggle-2">
+						<% form_for(@paper_check_profile, :validate => true, :url => paper_check_update_path, :html => { :method => :put }) do |f| %>
+								<%= f.hidden_field :id %>
+							<div class="row">
+								<%= f.label :street_address, "Address 1:" %>
+								<%= f.text_field :street_address, {:class=>'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.label :street_address_2, "Address 2:" %>
+								<%= f.text_field :street_address_2, {:class=>'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.label :city, "City:" %>
+								<%= f.text_field :city, {:class => 'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.label :state, "State:" %>
+								<%= f.state_select(:state) %>
+							</div>
+							<div class="row">
+								<%= f.label :zip_code, "Zip Code:" %>
+								<%= f.text_field :zip_code, {:class=>'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.label :phone_number, "Phone Number:" %>
+								<%= f.text_field :phone_number, {:class=>'ui-state-default'} %>
+							</div>
+							<div>
+								<%= f.submit 'Save', :class => 'btn primary medium save mb10' %>
+							</div>
+						<% end %>
+					</div><!--end #pay2-->
+					<div id="pay3" class="box toggle-3">
+						<% form_for(@paypal_profile, :validate => true, :url => paypal_update_path, :html => { :method => :put }) do |f| %>
+								<%= f.hidden_field :id %>
+							<div class="row">
+								<%= f.label :paypal_username, "Paypal Username:" %>
+								<%= f.text_field :paypal_username, {:class=>'ui-state-default'} %>
+							</div>
+							<div class="row">
+								<%= f.submit 'Save', :class => 'btn primary medium save mb10' %> 
+							</div>
+						<% end %>
+					</div><!--end #pay3-->
+					<table id="saved_business_payments" class="tablesorter sort"> 
+						<thead> 
+							<tr> 
+								<th>Default</th> 
+								<th>Payment Type</th> 
+								<th>Account Details</th> 
+								<th>Date Added</th> 
+					<th>Edit?</th>
+							</tr> 
+						</thead> 
+						<tbody> 
+				<% @paypal_profiles.each do |profile| %>
+					<tr>
+						<% if (profile.is_default?(current_business)) %>
+					<td><span style="padding:5px;"><strong>Current Default</strong></span></td> 
+						<% else %>
+					<td><%= link_to "Set as Default", business_set_default_payment_path(:payment_type_id => @paypal_type_id, :payment_profile_id => profile.id), {:class =>'btn small info'} %></td>
+					<% end %>
+					<td><%= profile.print_type %></td> 
+					<td><%= profile.paypal_username %></td> 
+					<td><%= profile.print_date_added %></td> 
+					<td><a href="#" class="edit_payment btn small info mr10" id="toggle-3" onclick="setPaypal(
+						'<%= profile.id %>',
+						'<%= escape_javascript(profile.paypal_username) %>');
+						resetPaymentTypeDropdown();">Edit</a>
+						<%= link_to "Delete", business_delete_payment_profile_path(:payment_type_id => @paypal_type_id, :payment_profile_id => profile.id), {:class =>'btn danger small'} %>
+					</td>
+					</tr>
+				<% end %>
+				<% @direct_deposit_profiles.each do |profile| %>
+					<tr>
+						<% if (profile.is_default?(current_business)) %>
+					<td><span style="padding:5px;"><strong>Current Default</strong></span></td>
+						<% else %>
+					<td><%= link_to "Set as Default", business_set_default_payment_path(:payment_type_id => @direct_deposit_type_id, :payment_profile_id => profile.id), {:class =>'btn small info'}%></td>
+						<% end %>
+					<td><%= profile.print_type %></td> 
+					<td><%= profile.masked_account_number %></td> 
+					<td><%= profile.print_date_added %></td> 
+					<td><a href="#" class="edit_payment btn small info mr10" id="toggle-1" onclick="setDirectDeposit(
+						'<%= profile.id %>',
+						'<%= escape_javascript(profile.bank_name) %>',
+						'<%= profile.bank_account_type_id %>',
+						'<%= escape_javascript(profile.masked_account_number) %>',
+						'<%= escape_javascript(profile.masked_routing_number) %>');
+						resetPaymentTypeDropdown();">Edit</a>
+						<%= link_to "Delete", business_delete_payment_profile_path(:payment_type_id => @direct_deposit_type_id, :payment_profile_id => profile.id), {:class =>'btn danger small'} %>
+					</td>
+					</tr>
+				<% end %>
+				<% @paper_check_profiles.each do |profile| %>
+					<tr>
+						<% if (profile.is_default?(current_business)) %>
+							<td><span style="padding:5px;"><strong>Current Default</strong></span></td> 
+						<% else %>
+					<td><%= link_to "Set as Default", business_set_default_payment_path(:payment_type_id => @paper_check_type_id, :payment_profile_id => profile.id), {:class =>'btn small info'}%></td>
+						<% end %>
+					<td><%= profile.print_type %></td> 
+					<td><%= profile.street_address %></td> 
+					<td><%= profile.print_date_added %></td> 
+					<td><a href="#" class="edit_payment btn small info mr10" id="toggle-2" onclick="setPaperCheck(
+						'<%= profile.id %>',
+						'<%= escape_javascript(profile.street_address) %>',
+						'<%= escape_javascript(profile.street_address_2) %>',
+						'<%= escape_javascript(profile.city) %>',
+						'<%= escape_javascript(profile.state) %>',
+						'<%= escape_javascript(profile.zip_code) %>',
+						'<%= escape_javascript(profile.phone_number) %>');
+						resetPaymentTypeDropdown();">Edit</a>
+						<%= link_to "Delete", business_delete_payment_profile_path(:payment_type_id => @paper_check_type_id, :payment_profile_id => profile.id), {:class =>'btn danger small'} %>
+					</td>
+					</tr>
+				<% end %>
+						</tbody> 
+					</table>
+			</div>
+			<!--<div id="myanalytics">
+				<p>Coming soon...</p>
+			</div>-->
+	</div>
+</div>
+<div class="clear"></div>

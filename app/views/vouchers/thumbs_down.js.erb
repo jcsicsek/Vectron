@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+	document.getElementById('thumbs-up-<%= @voucher.event_type_id %>').className = 'thumbs-up';
+	document.getElementById('thumbs-down-<%= @voucher.event_type_id %>').className = 'thumbs-down-selected';
+<% else %>
+	$('#no-user-rate-<%= @voucher.event_type_id %>').show();
+	$('#thumbs-up-<%= @voucher.event_type_id %>').hide();
+	$('#thumbs-down-<%= @voucher.event_type_id %>').hide();
+<% end %>

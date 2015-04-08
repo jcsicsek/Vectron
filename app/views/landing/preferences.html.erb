@@ -1,0 +1,168 @@
+<head>
+  <%= stylesheet_link_tag 'typography' %>
+  <style>
+    h2#preferences-h2 {font-size:24px;margin:5px;text-align:center;color:#FFF;}
+    p#preferences-why {font-size:14px;margin:5px;text-align:center;color:#FFF;}
+    #preferences-title {background-color:#222;padding:5px;text-align:center;}
+    #city-label {width:50px;float:left;font-weight:bold;font-family:'ChunkFiveRegular', Arial, Sans-Serif;color:#363b3f; font-weight: normal;}
+    #zip-label {width:80px;float:left;font-weight:bold;font-family:'ChunkFiveRegular', Arial, Sans-Serif;color:#363b3f; font-weight: normal;}
+    #d1-label {width:70px;float:left;}
+    #d2-label {width:70px;float:left;}
+    #d3-label {width:70px;float:left;}
+    #d4-label {width:70px;float:left;}
+    #t1-label {width:70px;float:left;}
+    #t2-label {width:70px;float:left;}
+    #t3-label {width:70px;float:left;}
+    #preferences-form input {width:30px;float:left;}
+    #city-input {width:180px;float:left;}
+    #zip-input {width:50px;float:left;}
+    .city {width:240px;float:left;margin-right:30px;}
+    .zip {width:240px;float:left;}
+    .d1 {width:120px;float:left;margin-right:15px;}
+    .d2 {width:120px;float:left;margin-right:15px;}
+    .d3 {width:120px;float:left;margin-right:15px;}
+    .d4 {width:120px;float:left;}
+    .t1 {width:130px;float:left;margin-right:20px;}
+    .t2 {width:130px;float:left;margin-right:20px;}
+    .t3 {width:130px;float:left;}
+    .clear {clear:both;}
+    .mt15 {margin-top:15px;}
+    /* ~~~~~~~~~~~~~~ BUTTONS ~~~~~~ */
+      .btn {
+        cursor: pointer;
+        display: inline-block;
+        background-color: #e6e6e6;
+        background-repeat: repeat-x;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(0.25, #ffffff), to(#e6e6e6));
+        background-image: -webkit-linear-gradient(#ffffff, #ffffff 0.25, #e6e6e6);
+        background-image: -moz-linear-gradient(#ffffff, #ffffff 0.25, #e6e6e6);
+        background-image: -ms-linear-gradient(#ffffff, #ffffff 0.25, #e6e6e6);
+        background-image: -o-linear-gradient(#ffffff, #ffffff 0.25, #e6e6e6);
+        background-image: linear-gradient(#ffffff, #ffffff 0.25, #e6e6e6);
+        padding: 4px 14px;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+        color: #333;
+        font-size: 13px;
+        line-height: 18px;
+        border: 1px solid #ccc;
+        border-bottom-color: #bbb;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        -webkit-transition: 0.1s linear all;
+        -moz-transition: 0.1s linear all;
+        transition: 0.1s linear all;
+      }
+      .btn.primary, btn.primary:hover {
+        color: #fff;background-position: 0 -15px;text-decoration: none;
+      }
+      .btn.primary {
+        background-color: #0064cd;
+        background-repeat: repeat-x;
+        background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+        background-image: -moz-linear-gradient(#049cdb, #0064cd);
+        background-image: -ms-linear-gradient(#049cdb, #0064cd);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+        background-image: -webkit-linear-gradient(#049cdb, #0064cd);
+        background-image: -o-linear-gradient(#049cdb, #0064cd);
+        background-image: linear-gradient(#049cdb, #0064cd);
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        border-color: #0064cd #0064cd #003f81;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+      }
+      .btn.large {
+        font-size: 16px;
+        line-height: 28px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+      }
+      .btn.save {
+        width:80px;
+        float:right;
+      }
+      button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+      }
+  </style>
+<%= include_javascripts :global %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#city-input").multiselect({multiple: false,header: "Select your city",noneSelectedText: "Select City",selectedList: 1, minWidth: '350',height: '225'}).multiselectfilter();;
+		})
+	</script>
+</head>
+
+<div>
+  <div id="preferences-title">
+    <h2 id="preferences-h2" class="mt10">Wait! Tell Us A Few Things First...</h2>
+    <p id="preferences-why" class="mb10"><em>(We want to give you relevant last-minute tickets!)</em></p>
+  </div>
+  <% form_for @subscriber, :url => save_preferences_path do |f| %>
+    <div class="mt15">
+      <div class="city">
+        <label id="city-label" for="city">City:</label>
+		<%= f.collection_select(:city_id, City.all, :id, :name, {}, {:id=>'city-input', :size=>'25'}) %>
+      </div>
+      <div class="zip">
+          <label id="zip-label" for="zipcode">Zip Code:</label>
+		  <%= f.text_field :zip_code, {:id => "zip-input"} %>
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+    <h3 class="mt15">What days or nights do you want to go out?</h3>
+	<%= f.fields_for :email_schedule do |ff| %>
+      <div id="preferences-form" class="d1">
+        <label id="d1-label" for="monday">Monday</label>
+		<%= ff.check_box :monday, {:id => "monday"} %>
+        <label id="d1-label" for="tuesday">Tuesday</label>
+        <%= ff.check_box :tuesday, {:id => "tuesday"} %>
+      </div>
+      <div id="preferences-form" class="d2">
+        <label id="d2-label" for="wednesday">Wednesday</label>
+        <%= ff.check_box :wednesday, {:id => "wednesday"} %>
+        <br>
+        <label id="d2-label" for="thursday">Thursday</label>
+        <%= ff.check_box :thursday, {:id => "thursday"} %>
+      </div>
+      <div id="preferences-form" class="d3">
+        <label id="d3-label" for="friday">Friday</label>
+        <%= ff.check_box :friday, {:id => "friday"} %>
+        <label id="d3-label" for="saturday">Saturday</label>
+        <%= ff.check_box :saturday, {:id => "saturday"} %>
+      </div>
+      <div id="preferences-form" class="d4">
+        <label id="d4-label" for="sunday">Sunday</label>
+        <%= ff.check_box :sunday, {:id => "sunday"} %>
+      </div>
+	<% end %>
+    <div class="clear"></div>
+    <h3 class="mt15">What types of events interest you?</h3>
+      <div id="preferences-form" class="t1">
+        <label id="t1-label" for="theater">Theater</label>
+        <input id="theater" name="theater" type="checkbox" value="1" />
+        <label id="t1-label" for="comedy">Comedy</label>
+        <input id="comedy" name="comedy" type="checkbox" value="1" />
+      </div>
+      <div id="preferences-form" class="t2">
+        <label id="t2-label" for="music">Music</label>
+        <input id="music" name="music" type="checkbox" value="1" />
+        <label id="t2-label" for="movies">Movies</label>
+        <input id="movies" name="movies" type="checkbox" value="1" />
+      </div>
+      <div id="preferences-form" class="t3">
+        <label id="t3-label" for="sports">Sports</label>
+        <input id="sports" name="sports" type="checkbox" value="1" />
+        <label id="t3-label" for="surprises">Surprises</label>
+        <input id="surprises" name="surprises" type="checkbox" value="1" />
+      </div>
+      <div class="clear"></div>
+	  <div><%= f.submit "Save", {:class => "btn primary large save"}%></div>
+  <% end %>
+
+</div>

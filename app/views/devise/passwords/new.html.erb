@@ -1,0 +1,28 @@
+<div id="content">
+  <div class="panel clearfix">
+    <h2>Forgot your password?</h2>
+    <div style="margin-right: 20px;" class="c50l"> 
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+        <%# devise_error_messages! %>
+      
+        <p><%= f.label :email %><br />
+        <%= f.email_field :email %></p>
+      
+        <p><%= f.submit "Send me reset password instructions", {:class=>'btn primary medium mt10'} %></p>
+      <% end %>
+    </div><!--end .c50l-->
+    
+    <%# render :partial => "devise/shared/links" %>
+    <% if resource_name == "user" %>
+    <div class="c50r mn15t">
+      <h3>Or Login With 3rd Party Logins</h3>
+      <br>
+        <p>Connect your Facebook account to sign in to UsherBuddy.</p>
+        <%= link_to image_tag("/images/facebook-login.png", :border=>0), user_omniauth_authorize_path(:facebook) %>
+        <div class="mt20 mb20"></div>
+        <p>Connect your Twitter account to sign in to UsherBuddy.</p>
+        <%= link_to image_tag("/images/twitter-login.png", :border=>0), user_omniauth_authorize_path(:facebook) %>
+    </div><!--end .c50r-->
+    <% end %>
+  </div>
+</div>
